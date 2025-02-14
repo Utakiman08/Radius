@@ -1,0 +1,46 @@
+<div class="card custom-card cards" style="min-height: 314px;">
+  <div class="top-left"></div>
+  <div class="top-right"></div>
+  <div class="bottom-left"></div>
+  <div class="bottom-right"></div>
+  <div class="card-header justify-content-between">
+    <div class="card-title" *ngIf="currentChartString === 'site'">Site Status</div>
+    <div class="card-title" *ngIf="currentChartString === 'datalogger'">DL Status</div>
+    <div class="card-title" *ngIf="currentChartString === 'dic'">DIC Status</div>
+    <div class="card-title" *ngIf="currentChartString === 'sensor'">Sensor Status</div>
+
+    <ng-container *ngIf="loading; else buttons">
+      <div class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading ...</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #buttons>
+      <button class="btn btn-primary-light rounded-pill btn-wave link" 
+      *ngIf="currentChartString === 'site'" 
+      (click)="openInNewTab('/site', 'pvvnl')">Site</button>
+<button class="btn btn-primary-light rounded-pill btn-wave link" 
+      *ngIf="currentChartString === 'datalogger'" 
+      (click)="openInNewTab('/datalogger', 'pvvnl')">DL</button>
+<button class="btn btn-primary-light rounded-pill btn-wave link" 
+      *ngIf="currentChartString === 'dic'" 
+      (click)="openInNewTab('/dic', 'pvvnl')">DIC</button>
+<button class="btn btn-primary-light rounded-pill btn-wave link" 
+      *ngIf="currentChartString === 'sensor'" 
+      (click)="openInNewTab('/sensor', 'pvvnl')">Sensor</button>
+    </ng-template>
+  </div>
+  <div class="card-body">
+    <div class="chart-container">
+      <div id="device_status" class="chart-content"></div>
+    </div>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic button group" style="gap: 5px;">  
+    <button type="button" class="btn btn-primary-light rounded-pill btn-wave" [class.active]="currentChartString === 'site'" (click)="handleButtonClick('site')">Site</button>
+    <button type="button" class="btn btn-primary-light rounded-pill btn-wave" [class.active]="currentChartString === 'datalogger'" (click)="handleButtonClick('datalogger')">DL</button>
+    <button type="button" class="btn btn-primary-light rounded-pill btn-wave" [class.active]="currentChartString === 'dic'" (click)="handleButtonClick('dic')">DIC</button>
+    <button type="button" class="btn btn-primary-light rounded-pill btn-wave" [class.active]="currentChartString === 'sensor'" (click)="handleButtonClick('sensor')">Sensor</button>
+  </div>
+</div>

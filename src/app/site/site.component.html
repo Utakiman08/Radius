@@ -1,0 +1,309 @@
+
+    <div class="page" style="margin: 0">
+        <app-header [showElements]="false" [ShowSomeElements] = "false" [SearchInput]="false" customClass="no-padding" [sourcecomponent]="sourceComponent"></app-header>    
+        <div class="controlcontainer">
+            <div class="main-content app-content">
+                <div *ngIf="loading" class="loader-overlay">
+                  <div class="loader"></div>
+                </div>
+            <div class="container-fluid">
+    
+                <div class="row" style="justify-content: center;">
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg nocursor">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Site Count</p>
+                                                <h5 class="mb-0 fw-medium">{{data.site_count}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class="las la-chart-bar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('Live')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Live Site</p>
+                                                <h5 class="mb-0 fw-medium">{{data.live_count}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="iconsdiv">
+                                        <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-bulb fs-16'></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('Radius')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Radius</p>
+                                                <h5 class="mb-0 fw-medium">{{data.radius_count}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class='bx bxl-xing'></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('Adwards')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">AIPL Count</p>
+                                                <h5 class="mb-0 fw-medium">{{data.aipl_count}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class="ri-line-chart-line fs-16"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('other')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Others</p>
+                                                <h5 class="mb-0 fw-medium">{{data.other}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-buildings'></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!-- 
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('Society')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Sodality</p>
+                                                <h5 class="mb-0 fw-medium">{{data.sodality_count}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class="ri-line-chart-line fs-16"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('active_cut_off_Y')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Active Cut off Y</p>
+                                                <h5 class="mb-0 fw-medium">{{data.active_cut_Y_count}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class="las la-ban"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('active_cut_off_N')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Active Cut off N</p>
+                                                <h5 class="mb-0 fw-medium">{{data.active_cut_N_count}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class="las la-ban"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('Maintenance')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Maintenance</p>
+                                                <h5 class="mb-0 fw-medium">{{data.maintenance_count}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class="las la-tools"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('Operation_Closed')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Operation Closed</p>
+                                                <h5 class="mb-0 fw-medium">{{data.closed_count}}</h5>
+                                            </div>
+                                            <div class="iconsdiv">
+                                                <span class="avatar avatar-md text-primary border bg-light"><i class="las la-door-closed"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                
+             <!-- End:: row-3 -->
+            <!-- Start:: row-4 -->  
+            <div class="row">
+                <div class="col-xl-12">
+                  <div class="card custom-card nocursor vhset" style="box-shadow: none;">
+                    <div class="top-left"></div>
+                    <div class="top-right"></div>
+                    <div class="bottom-left"></div>
+                    <div class="bottom-right"></div>
+                        <div class="card-header" style="overflow: auto;">
+                      <div class="card-title">Site {{this.currentDisplayType}}</div>
+                      <div class="btnholder1" style="min-width: 470px;">
+                         <span class = "newtabheaders">Search:</span>
+                        <input type="text" id="filter-text-box" placeholder="Search..." (input)="onFilterTextBoxChanged()" />
+                        <button class="btn btn-primary-light rounded-pill btn-wave link" (click)="onExport('csv')">Download CSV</button>
+                        <button class="btn btn-outline-success rounded-pill btn-wave" (click)="onExport('xlsx')">Download Excel</button>
+                      </div>
+                    </div>
+                    <div class="card-body tables">
+                            <div id="myGrid" style="width: 100%; height: 100%;" class="ag-theme-quartz"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="exampleModalFullscreenXx1" tabindex="-1" aria-labelledby="exampleModalFullscreenXx1Label" aria-hidden="true" [ngClass]="{'show d-block': showModal}">
+                <div class="modal-dialog modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Site Details</h5>
+                      <div class="btnholder">
+                        <button class="btn btn-primary-light rounded-pill btn-wave link" (click)="onExportModal('csv')">Download CSV</button>
+                        <button class="btn btn-outline-success rounded-pill btn-wave" (click)="onExportModal('xlsx')">Download Excel</button>
+                        <input type="text" id="filter-text-box-modal" placeholder="Search..." (input)="onFilterTextBoxChangedmodal()" />
+                      </div>
+                      <button type="button" class="btn-close" aria-label="Close" (click)="hideModal()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="myModalGrid" style="width: 100%; height: 568px;" class="ag-theme-quartz"></div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+              </div>
+           </div>
+        </div>
+        <app-footer> </app-footer>
+    
+        
+     </div>
+    
+     
+    
+     
+    

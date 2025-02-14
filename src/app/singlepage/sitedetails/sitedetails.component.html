@@ -1,0 +1,287 @@
+<div class="row">
+    <div class="col-xl-4">
+<div class="card" >
+    <div class="top-left"></div>
+    <div class="bottom-left"></div>
+    <div class="bottom-right"></div>
+    <div class="top-right"></div>
+                <div class="card-body conditions">
+                <h6>Site Name</h6>
+                <p>{{this.site_data.site_name}}({{this.site_data.short_code}})</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+<div class="card">
+    <div class="top-left"></div>
+    <div class="bottom-left"></div>
+    <div class="bottom-right"></div>
+    <div class="top-right"></div>
+    <div class="card-body conditions">
+                <h6>Supervisor Name</h6>
+                <p>{{this.site_data.supervisor_name}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+    <div class="card"> 
+    <div class="top-left"></div>
+    <div class="bottom-left"></div>
+    <div class="bottom-right"></div>
+    <div class="top-right"></div>
+    <div class="card-body conditions">
+                <h6>Supervisor Contact Info</h6>
+                <p style="margin: 0;">{{this.site_data.supervisor_contact_no}}</p>    
+                <p style="margin: 0;">{{this.site_data.supervisor_email_id}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xxl-4 col-xl-5 col-lg-5">
+        <div class="card " >
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header">
+                <div class="card-title">Site Details</div>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled project-transactions-card">
+                  
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> P </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Payment Gateway Master</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold" *ngIf="this.site_data.pg_enable === 'Y'">
+                                    <i class="las la-check"></i>
+                                </h6>
+                                    <h6 class="fw-semibold" *ngIf="this.site_data.pg_enable === 'N'">
+                                        <i class="las la-times"></i>
+                                </h6> 
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> P </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium"> Payment Gateway HDFC (GRID)</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold" *ngIf="this.site_data.pg_enable_hdfc === 'Y'">
+                                    <i class="las la-check"></i></h6>
+                                    <h6 class="fw-semibold" *ngIf="this.site_data.pg_enable_hdfc === 'N'">
+                                        <i class="las la-times"></i>
+                                </h6> 
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> P </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Payment Gateway HDFC(DG)</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold" *ngIf="this.site_data.ibms_tp_mobile_app_enable === 'Y'">
+                                    <i class="las la-check"></i></h6>
+                                    <h6 class="fw-semibold" *ngIf="this.site_data.ibms_tp_mobile_app_enable === 'N'">
+                                    <i class="las la-times"></i>
+                                </h6> 
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> P </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Payment Gateway BILLDESK</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold" *ngIf="this.site_data.access_control_available === 'Y'">
+                                    <i class="las la-check"></i></h6>
+                                    <h6 class="fw-semibold" *ngIf="this.site_data.access_control_available === 'N'">
+                                    <i class="las la-times"></i>
+                                </h6> 
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> A </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Active Cut Off GRID</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold" *ngIf="this.site_data.active_cut_off_grid === 'Y'">
+                                    <i class="las la-check"></i></h6>
+                                      <h6 class="fw-semibold" *ngIf="this.site_data.active_cut_off_grid === 'N'">
+                                    <i class="las la-times"></i>
+                                </h6> 
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> A </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Active Cut Off DG</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold" *ngIf="this.site_data.active_cut_off_dg === 'Y'">
+                                    <i class="las la-check"></i></h6>
+                                    <h6 class="fw-semibold" *ngIf="this.site_data.active_cut_off_dg === 'N'">
+                                    <i class="las la-times"></i>
+                                </h6> 
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> O </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Other Deduction Day</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.other_deduction_day}}</h6> </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-4 col-xl-5 col-lg-5">
+        <div class="card " >
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header">
+                <div class="card-title"> Site Details </div>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled project-transactions-card">
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> H </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Happy Hour GRID</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">From : {{this.site_data.happy_hh_from_grid}} to {{this.site_data.happy_hh_to_grid}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> H </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Happy Hour DG</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">From : {{this.site_data.happy_hh_from_dg}} to {{this.site_data.happy_hh_to_dg}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> F </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Fixed Deduction Day</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.fixed_deduction_day}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> F </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Fixed Deduction Hour</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.fixed_deduction_hour}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> M </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">MMC Deduction Day</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.mmc_deduction_day}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> M </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">MMC Deduction Hour</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.mmc_deduction_hour}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> O </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Other Deduction Hour</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.other_deduction_hour}}</h6> </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-4">
+        <div class="card " >
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header">
+                <div class="card-title"> Site Details </div>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled project-transactions-card">
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> E </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">EMI Deduction Day</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.emi_deduction_day}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> E </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">EMI Deduction Hour</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.emi_deduction_hour}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> C </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">CAM Deduction Day</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.CAM_deduction_day}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> G </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">GRID Tax</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.grid_tax}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> D </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">DG Tax</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.dg_tax}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> M </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Min Amount</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.min_recharge}}</h6> </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-top">
+                            <div class="me-3"> <span class="avatar avatar-md bg-primary-transparent fs-16"> M </span> </div>
+                            <div class="flex-fill"> <span class="d-block fw-medium">Max Amount</span> </div>
+                            <div class="Centeritup">
+                                <h6 class="fw-semibold">{{this.site_data.max_recharge}}</h6> </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> 

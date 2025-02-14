@@ -1,0 +1,227 @@
+<!-- app-header -->
+<header class="app-header" [ngClass]="customClass">
+  <!-- Start::main-header-container -->
+  <div class="main-header-container container-fluid">
+      <!-- Start::header-content-left -->
+      <div class="header-content-left">
+          <!-- Start::header-element -->
+          <div class="image">
+              <img src="../../assets/Xenius-Registered-Logo-1_white.png" alt="Xenius-Registered-Logo-1_white" (click)="onImageClick()">
+          </div>
+          <div class="timer" *ngIf="!isSmallScreen && (showElements || SearchInput) && showTimer" style="align-items: center;display: flex ; position: relative;left: 20px;">
+              <div class="btn-group my-1">
+                  <button type="button" class="btn left btn-info" (click)="SendUpdateCommand()"><i class="ri-timer-line" style="color: black; font-size: 21px;"></i>
+                  </button>
+                  <button type="button" class="btn right btn-info dropdown-toggle dropdown-toggle-split me-2" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-chevron-down'></i></button>
+                  <ul class="dropdown-menu">
+                      <li>
+                          <form (ngSubmit)="updateInterval()">
+                              <label for="interval-hours" style="margin-left: 5px;">Set Timer For Update:</label>
+                              <div class="form">
+                                  <input id="interval-hours" type="number" [(ngModel)]="hours" name="intervalHours" placeholder="Hours" min="0" required />
+                                  <span>:</span>
+                                  <input id="interval-minutes" type="number" [(ngModel)]="minutes" name="intervalMinutes" placeholder="Minutes" min="0" max="59" required />
+                                  <span> : </span>
+                                  <input id="interval-seconds" type="number" [(ngModel)]="seconds" name="intervalSeconds" placeholder="Seconds" min="30" max="59" required />
+                                  <button class="intervalTimersubmit btn btn-primary rounded-pill btn-wave" type="submit" [disabled]="!isValidInterval()">Update</button>
+
+                              </div>
+                          </form>
+                      </li>
+
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <!-- End::header-content-left -->
+
+      <!-- Start::header-content-center -->
+      <div class="headercontainer">
+          <div class="headertitle">
+              {{ sourcecomponent === 'torrent' ? 'Torrent' : sourcecomponent === 'npcl' ? 'NPCL' : sourcecomponent === 'pvvnl' ? 'PVVNL' : sourcecomponent === 'amr'? 'AMR': '' }} Monitoring Dashboard
+          </div>
+      </div>
+      <!-- End::header-content-center -->
+
+      <!-- Start::header-content-right -->
+      <div class="header-content-right" style="justify-content: end;">
+          <!-- <div class="notification" style="display: flex;position: relative;align-items: center;">
+          <i class='bx bx-bell' style="color: white;"></i>
+          <i class='bx bx-bell bx-tada' style="color: red;" ></i>
+       </div> -->
+          <div *ngIf="!isSmallScreen && (showElements || SearchInput)" class="searchbar" style="align-items: center; margin-right: 5px; display: flex; position: relative; min-width: 298px;">
+
+              <!-- Search Input Field -->
+              <input [ngClass]="searchClass" type="text" id="filter-text-box" [placeholder]="getPlaceholder(currenttype)" [(ngModel)]="password" (keyup.enter)="search()" style="padding-right: 90px;" />
+
+              <!-- Dropdown Menu -->
+              <select class="form-select" id="TypeOfData" [(ngModel)]="currenttype">
+                  <option value="LOCATION_ID">Location ID</option>
+                  <option value="ACCOUNT_ID">Account ID</option>
+                  <option value="SERIAL_NO">Serial NO</option>
+                  <option value="MOBILE_NO">Mobile NO</option>
+              </select>
+
+              <!-- Loader for the bottom border, visible only if loadingsearch is true -->
+              <div *ngIf="loadingsearch" class="loader-line"></div>
+          </div>
+
+          <select class="form-select" aria-label="Component Selection" *ngIf="showElements && !isSmallScreen" [value]="selectedRoute" (change)="onSelectChange($event)">
+
+              <option disabled>Select Project</option>
+              <option value="/main/control">All</option>
+              <option value="/main/npcl">NPCL</option>
+              <option value="/main/pvvnl">PVVNL</option>
+              <option value="/main/torrent">Torrent</option>
+              <option value="/main/amr">AMR</option>
+
+          </select>
+
+          <select *ngIf="!showElements && !isSmallScreen && !ShowSomeElements" class="form-select" [(ngModel)]="sourcecomponent" (change)="onProjectChange($event)">
+              <option disabled value="">Select Project</option>
+              <option value="control">All</option>
+              <option value="npcl">NPCL</option>
+              <option value="pvvnl">PVVNL</option>
+              <option value="torrent">Torrent</option>
+              <option value="amr">AMR</option>
+
+          </select>
+
+          <select *ngIf="!showElements && !isSmallScreen && SearchInput" class="form-select" [(ngModel)]="searchComponent">
+              <option disabled>Select Project</option>
+              <option value="npcl">NPCL</option>
+              <option value="pvvnl">PVVNL</option>
+              <option value="torrent">Torrent</option>
+              <option value="amr">AMR</option>
+
+          </select>
+
+
+          <ul class="header-content-right">
+              <!-- Start::header-element -->
+              <li class="header-element">
+                  <!-- Start::header-link|switcher-icon -->
+                  <a href="" (click)="logout()" class="logout" data-bs-toggle="offcanvas" data-bs-target="#switcher-canvas">
+                      <i class='bx bx-log-out'></i>
+                  </a>
+                  <!-- End::header-link|switcher-icon -->
+              </li>
+              <!-- End::header-element -->
+          </ul>
+      </div>
+      <!-- End::header-content-right -->
+  </div>
+  <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+          <div class="timer" *ngIf="isSmallScreen && (showElements || SearchInput)" style="align-items: center;display: flex ; position: relative;">
+              <div class="btn-group my-1">
+                  <button type="button" class="btn left btn-info" (click)="SendUpdateCommand()"><i class="ri-timer-line" style="color: black; font-size: 21px;"></i>
+                  </button>
+                  <button type="button" style="padding: 4px 3px 4px 3px !important;" class="btn right btn-info dropdown-toggle dropdown-toggle-split me-2" data-bs-toggle="dropdown" aria-expanded="false"><i class='bx bx-chevron-down'></i></button>
+                  <ul class="dropdown-menu">
+                      <li>
+                          <form (ngSubmit)="updateInterval()">
+                              <label for="interval-hours" style="margin-left: 5px;">Set Timer For Update:</label>
+                              <div class="form">
+                                  <input id="interval-hours" type="number" [(ngModel)]="hours" name="intervalHours" placeholder="Hours" min="0" required />
+                                  <span>:</span>
+                                  <input id="interval-minutes" type="number" [(ngModel)]="minutes" name="intervalMinutes" placeholder="Minutes" min="0" max="59" required />
+                                  <span>:</span>
+                                  <input id="interval-seconds" type="number" [(ngModel)]="seconds" name="intervalSeconds" placeholder="Seconds" min="30" max="59" required />
+                                  <button class="intervalTimersubmit btn btn-primary rounded-pill btn-wave" type="submit" [disabled]="!isValidInterval()">Update</button>
+                              </div>
+                          </form>
+                      </li>
+
+                  </ul>
+              </div>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span><i class="ri-menu-line"></i></span> </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+              <div class="itemflex" style="display: flex ;align-items: center;">
+
+                  <!-- <div class="colourpicker" style="left: 0;" *ngIf="isSmallScreen">
+              <input type="color" [(ngModel)]="selectedColor" (change)="onColorChange($event)" />
+             </div> -->
+
+                  <ul *ngIf="showElements" class="navbar-nav me-auto mb-lg-0">
+                      <li class="nav-item" [ngClass]="{'active-route': selectedRoute === '/main/control'}" (click)="updateRoute('/main/control')">
+                          <a class="nav-link" [routerLink]="['/main/control']">All</a>
+                      </li>
+                      <li class="nav-item" [ngClass]="{'active-route': selectedRoute === '/main/npcl'}" (click)="updateRoute('/main/npcl')">
+                          <a class="nav-link" [routerLink]="['/main/npcl']">NPCL</a>
+                      </li>
+                      <li class="nav-item" [ngClass]="{'active-route': selectedRoute === '/main/pvvnl'}" (click)="updateRoute('/main/pvvnl')">
+                          <a class="nav-link" [routerLink]="['/main/pvvnl']">PVVNL</a>
+                      </li>
+                      <li class="nav-item" [ngClass]="{'active-route': selectedRoute === '/main/torrent'}" (click)="updateRoute('/main/torrent')">
+                          <a class="nav-link" [routerLink]="['/main/torrent']">Torrent</a>
+                      </li>
+                      <li class="nav-item" [ngClass]="{'active-route': selectedRoute === '/main/amr'}" (click)="updateRoute('/main/amr')">
+                          <a class="nav-link" [routerLink]="['/main/amr']">AMR</a>
+                      </li>
+                  </ul>
+
+
+                  <ul *ngIf="!showElements && !SearchInput" class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <!-- Equivalent of the "Select Project" -->
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0)" (click)="onProjectChangeNavlink('control')" [ngClass]="{ 'active-project': activeProject === 'control' }">
+                  All
+                </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0)" (click)="onProjectChangeNavlink('npcl')" [ngClass]="{ 'active-project': activeProject === 'npcl' }">
+                  NPCL
+                </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0)" (click)="onProjectChangeNavlink('pvvnl')" [ngClass]="{ 'active-project': activeProject === 'pvvnl' }">
+                  PVVNL
+                </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0)" (click)="onProjectChangeNavlink('torrent')" [ngClass]="{ 'active-project': activeProject === 'torrent' }">
+                  Torrent
+                </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0)" (click)="onProjectChangeNavlink('amr')" [ngClass]="{ 'active-project': activeProject === 'amr' }">
+                  AMR
+                </a>
+                      </li>
+                  </ul>
+
+                  <div class="SearchDIV">
+                      <form class="d-flex" role="search" (ngSubmit)="Navbarsearch()">
+                          <div *ngIf="isSmallScreen && (showElements || SearchInput)" class="searchbar" style="align-items: center; margin-right: 5px; display: flex; position: relative;min-width: 298px;">
+                              <input type="text" [ngClass]="searchClass" id="filter-text-box" [placeholder]="getPlaceholder(currenttypeNavbar)" [(ngModel)]="Navbarpassword" name="Navbarpassword" required style="padding-right: 90px;" />
+
+                              <!-- Bind the select element value to the sourcecomponent -->
+                              <select class="form-select" id="TypeOfData" [(ngModel)]="currenttypeNavbar" name="currenttypeNavbar">
+                                  <option value="LOCATION_ID">Location ID</option>
+                                  <option value="ACCOUNT_ID">Account ID</option>
+                                  <option value="SERIAL_NO">Serial NO</option>
+                                  <option value="MOBILE_NO">Mobile NO</option>
+                              </select>
+                          </div>
+
+                      </form>
+                      <select *ngIf="!showElements && isSmallScreen && SearchInput" class="form-select" [(ngModel)]="searchComponent">
+                          <option disabled>Select Project</option>
+                          <option value="npcl">NPCL</option>
+                          <option value="pvvnl">PVVNL</option>
+                          <option value="torrent">Torrent</option>
+                          <option value="amr">AMR</option>
+
+                      </select>
+                      <button *ngIf="isSmallScreen && (showElements || SearchInput)" class="btn btn-primary rounded-pill btn-wave" (click)="Navbarsearch()">Submit</button>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </nav>
+  <!-- End::main-header-container -->
+</header>
+<!-- /app-header -->

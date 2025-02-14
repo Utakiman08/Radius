@@ -1,0 +1,205 @@
+<div *ngIf="loading" class="loader-overlay">
+  <div class="loader"></div>
+</div>
+<div class="card custom-card" style="height: 98%; position: relative;">
+  <div class="top-left"></div>
+  <div class="top-right"></div>
+  <div class="bottom-left"></div>
+  <div class="bottom-right"></div>
+  <div class="card-header justify-content-center">
+      <ul class="mobileview" style="display: flex; list-style-type: none;gap: 3rem; font-size: 1.5rem;font-weight: 500;">
+          <li style="color: rgb(0, 254, 124); font-weight: 600;">Live Site: {{this.site.live}}</li>
+          <li style="color: rgb(255, 0, 0); font-weight: 600;">Maintenance: {{this.site.Maintenance}}</li>
+      </ul>
+  </div>
+  <div class="card-body map" style="position: relative; background-color: black;">
+      <button (click)="toggleSlideMenu()" class="toggle-button">Sites</button>
+      <div class="toggle-container" [ngClass]="darkMode ? 'dark-mode' : 'light-mode'" (click)="toggleMapMode()">
+        <div class="toggle-btn"></div>
+      </div>
+      <button 
+      class="AutoIcon icon-button" 
+      (click)="setAutoZoomMode()"
+      [ngClass]="{'active': autozoomstatus, 'inactive': !autozoomstatus}"
+      id="autoZoomButton">
+        <img style="height: 40px;" src="../../../assets/images/Mapautoicon.png" alt="Mapautoicon">
+    </button>
+    
+    <button 
+      class="StaticIcon icon-button" 
+      (click)="setStaticMapMode()"
+      [ngClass]="{'active': !autozoomstatus, 'inactive': autozoomstatus}"
+      id="staticMapButton">
+        <img style="height: 40px;" src="../../../assets/images/mapStaticIcon.png" alt="mapStaticIcon">
+    </button>
+      <div id="india" class="jvm-container" style="height: 100%; width: 100%; background-color: transparent;"></div>
+      <div class="slide-menu" 
+      *ngIf="isSlideMenuVisible" 
+      id="Sidemenu"
+      (mouseenter)="onMouseEnterSidemenu()" 
+      (mouseleave)="onMouseLeaveSidemenu()">   
+   <h3 class ="Slidemenuheader">Site Status</h3>
+   
+   <div class="searchbar">
+     <input 
+       type="text" 
+       id="filter-text-box" 
+       placeholder="Search location..." 
+       [(ngModel)]="searchTerm" 
+       class="search-bar" 
+     />
+   </div>
+   
+   <div class="list" #scrollList>
+     <ul>
+       <li *ngFor="let location of filteredLocations()" 
+           class="location-item" 
+           (click)="zoomToLocation(location)" 
+           [class.blinking-red]="location.site === 'Maintenance'"
+           [class.blinking-yellow]="location.DG === 'ON'"
+           [class.blinking-yellow-red]="location.site === 'Maintenance' && location.DG === 'ON'">
+         {{ location.name }}
+       </li>
+     </ul>
+   </div>
+ </div>
+  </div>
+</div>
+<div class="modal fade" style="backdrop-filter: blur(10px);" id="exampleModalFullscreenXx1" tabindex="-1" aria-labelledby="exampleModalFullscreenXx1Label" aria-hidden="true" [ngClass]="{'show d-block': showModal}">
+  <div class="modal-dialog modal-dialog modal-xl">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">{{locationname}} Details</h5>
+              <div class="btnholder">
+              </div>
+              <button style="font-size: 20px;" type="button" class="btn-close" aria-label="Close" (click)="hideModal()"></button>
+          </div>
+          <div class="overlay">
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-xl-12">
+
+                          <div class="sensor">
+                              <div class="listheader">
+                                  Sensor
+                              </div>
+                              <ul class="lists">
+                                  <li>Healthy : {{sensor.healthy}}</li>
+                                  <li>Unhealthy : {{sensor.unhealthy}}</li>
+                                  <li>Faulty : {{sensor.sensor_faulty}}</li>
+                              </ul>
+                              <div class="ModalFooter" (click)="openInNewTab('/sensor', this.modalProject)">
+                                  See more
+                              </div>
+                          </div>
+                          <div class="dic">
+                              <div class="listheader">
+                                  DIC
+                              </div>
+                              <ul class="lists">
+                                  <li>Healthy : {{dic.healthy}}</li>
+                                  <li>Unhealthy : {{dic.unhealthy}}</li>
+                                  <li>Faulty : {{dic.faulty}}</li>
+                              </ul>
+                              <div class="ModalFooter" (click)="openInNewTab('/dic', this.modalProject)">
+                                  See more
+                              </div>
+                          </div>
+                          <div class="datalogger">
+                              <div class="listheader">
+                                  Datalogger
+                              </div>
+                              <ul class="lists">
+                                  <li>Disconnected : {{dl.Count}}</li>
+                                  <li>Faulty : {{dl.faulty}}</li>
+                                  <li>Maintenance : {{dl.maintenance}}</li>
+                              </ul>
+                              <div class="ModalFooter" (click)="openInNewTab('/datalogger', this.modalProject)">
+                                  See more
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-xl-12">
+                          <div class="dgModal">
+                              <div class="listheader">
+                                  Status
+                              </div>
+                              <div class="cards">
+                                  <div class="row" *ngIf="modalProject !== 'AMR'">
+                                      <div class="col dgcomps animate animate-grid">
+                                          <div class="gridimageComponent">
+                                              <img class="gridimage" src="../../../assets/images/GridOn.png" alt="GridOn"> Grid
+                                          </div>
+                                          <!-- <span class="dgcondition">Live</span><br> -->
+                                          <ul class="lists-status" style="padding: 0 !important; font-size:15px">
+                                              <li>Meter Cut off: {{this.sensor.sensor_cut_grid}}</li>
+                                              <li>Meter Overload: {{this.sensor.sensor_overload_grid}}</li>
+                                          </ul>
+                                      </div>
+                                      <div class="col dgcomps animate animate-dg">
+                                          <div class="gridimageComponent">
+                                              <img class="gridimage" src="../../../assets/images/GridOff.png" alt="GridOff"> DG
+                                          </div>
+                                          <!-- <span class="dgcondition">Live</span><br> -->
+                                          <ul class="lists-status" style="padding: 0 !important; font-size:15px">
+                                              <li>Meter Cut off: {{this.sensor.sensor_cut_dg}}</li>
+                                              <li>Meter Overload: {{this.sensor.sensor_overload_dg}}</li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                                  <div class="row" *ngIf="modalProject === 'AMR'">
+                                    <div class="col dgcomps animate animate-dg">
+                                        <div class="gridimageComponent">
+                                            <img class="gridimage" src="../../../assets/images/electric-meter.png" alt="electric-meter">Sensor Details
+                                        </div>
+                                        <!-- <span class="dgcondition">Live</span><br> -->
+                                        <ul class="lists-status" style="padding: 0 !important; font-size:15px">
+                                            <li>Meter Cut off: {{this.sensor.sensor_cut}}</li>
+                                            <li>Meter Overload: {{this.sensor.sensor_overload}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col dgcomps animate animate-dg">
+                                        <div class="gridimageComponent">
+                                            <img class="gridimage" src="../../../assets/images/database-storage.png" alt="database-storage">DL Details
+                                        </div>
+                                        <!-- <span class="dgcondition">Live</span><br> -->
+                                        <ul class="lists-status" style="padding: 0 !important; font-size:15px">
+                                            <li>DL Connected: {{this.dl.connected_dl}}</li>
+                                            <li>DL Disconnected: {{this.dl.disconnected_dl}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                  <div class="row">
+                                      <div class="col dgcomps bottomrows">
+                                          Maintenance Meter: {{sensor.sensor_maintenance}}
+                                      </div>
+                                      <div class="col dgcomps bottomrows">
+                                          Infra Count : {{sensor.infra_count}}
+                                      </div>
+                                  </div>
+                                  <div class="col dgcomps bottomrows" style="display: flex;justify-content: center;">
+                                      Zero Reading Meters : {{sensor.zero_reading}}
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="consumption">
+                              <div class="listheader">
+                                  Consumption
+                                  <div class="right">
+                                      <span *ngIf="gridData && gridData.length > 0" class="gridConsumption">Grid</span>
+                                      <span *ngIf="dgData && dgData.length > 0" class="dg">DG</span>
+                                   </div>
+                              </div>
+                              <div class="Consumpchart">
+                                  <div id="Consumption"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

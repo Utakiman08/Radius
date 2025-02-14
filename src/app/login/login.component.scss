@@ -1,0 +1,51 @@
+   .col-xl-12{
+    width: 100% !important;
+  }
+  img{
+    height: 40px;
+  }
+  .authentication.authentication-basic .desktop-logo {
+    display: block;
+  }
+  .form-label {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgb(var(--default-text-color-rgb));
+  }
+  .col-form-label-lg,
+.col-form-label-sm,
+  .col-form-label {
+    font-weight: 400;
+    
+  }
+  .text-default {
+    color: rgb(var(--default-text-color-rgb)) !important;
+  }
+  .form-control {
+    border-color: var(--input-border);
+    color: rgb(var(--default-text-color-rgb));
+    background-color: var(--form-control-bg);
+    font-size: 0.875rem;
+    font-weight: var(--default-font-weight);
+    line-height: 1.8;
+    border-radius: 0;
+  }
+  .form-control:focus {
+    box-shadow: none;
+    border-color: var(--input-border);
+    background-color: rgba(var(--primary-rgb), 0.1);
+    box-shadow: 1px 0px 0.125rem 0 rgba(0, 0, 0, 0.05);
+    color: rgb(var(--default-text-color-rgb));
+  }
+  .form-control.border-dotted {
+    border-style: dotted;
+  }
+  .form-control.border-dashed {
+    border-style: dashed;
+  }
+  .form-control::placeholder{
+    color: var(--text-muted);
+  }
+  .ri-eye-line,.ri-eye-off-line{
+    color: var(--text-muted);
+  }

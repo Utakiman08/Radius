@@ -1,0 +1,289 @@
+<div class="main-content app-content">
+    <div *ngIf="loading" class="loader-overlay">
+      <div class="loader"></div>
+    </div>
+  
+    <div class="container-fluid">
+        <app-header [showElements]="false" [ShowSomeElements] = "false" [SearchInput]="false" customClass="no-padding" [sourcecomponent]="sourcecomponent"></app-header>    
+
+      <div class="row" style="justify-content: center;">
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">Meter Count</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalMeterCount}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="bi-speedometer2 fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">Infra Meter Count</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalInfraMeterCount}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="ri-building-line fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">Installed Meter</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalInstallMeterCount}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="bi-gear fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">Infra</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalInfra}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="ri-community-line fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">Total 3 Phase</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalThreePhase}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="bi-lightning fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">Total 1 Phase</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalSinglePhase}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="bi-lightning fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">AEW</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalAEW}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="ri-pulse-line fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">GENUS</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalGENUS}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="bi-speedometer2 fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">CT</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalCT}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="bi-speedometer2 fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">HPL</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalHPL}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="bi-speedometer2 fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-xxl-2 col-md-4 col-sm-6" >
+            <div class="card Nowbg " >
+                <div class="top-left" ></div>
+                <div class="top-right" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="card-body background">
+                    <div class="d-flex align-items-top justify-content-between">
+                        <div class="flex-fill ms-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                <div>
+                                    <p class="fs-14 fw-medium mb-2">WOQ</p>
+                                    <h5 class="mb-0 fw-medium">{{meterdata.totalWOQ}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="avatar avatar-md text-primary border bg-light"><i class="bi-check-circle fs-16"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        
+    </div>
+    
+        <div class="row"> 
+            <div class="col-xl-12">
+                <div class="card custom-card nocursor vhset" style="box-shadow: none;">
+                <div class="top-left"></div>
+                <div class="top-right"></div>
+                <div class="bottom-left"></div>
+                <div class="bottom-right"></div>
+                    <div class="card-header">
+                  <div class="card-title">Site Meter</div>
+                  <div class="btnholder1">
+                     <span class = "newtabheaders">Search:</span>
+                    <input type="text" id="filter-text-box" placeholder="Search..." (input)="onFilterTextBoxChanged()" />
+                    <button class="btn btn-primary-light rounded-pill btn-wave link" (click)="onExport('csv')">Download CSV</button>
+                    <button class="btn btn-outline-success rounded-pill btn-wave" (click)="onExport('xlsx')">Download Excel</button>
+                  </div>
+                </div>
+                <div class="card-body tables">
+                    <div id="myGrid" style="width: 100%;height: 100%;" class="ag-theme-quartz"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

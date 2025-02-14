@@ -1,0 +1,160 @@
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card" style="background: #00ffcf1c;">
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-body py-0">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="p-3 custom-border-end"> <span class="d-block fs-18 mb-1 fw-semibold">Name</span>
+                            <h6 class=" mb-0">{{this.location_grid.consumer_name}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="p-3 custom-border-end"> <span class="d-block fs-18 mb-1 fw-semibold">Flat Number</span>
+                            <h6 class=" mb-0">{{this.location_grid.location_no}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="p-3 custom-border-end"> <span class="d-block fs-18 mb-1 fw-semibold">Flat Id</span>
+                            <h6 class=" mb-0">{{this.location_grid.location_id}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="p-3 custom-border-end"> <span class="d-block fs-18 mb-1 fw-semibold">Account Id</span>
+                            <h6 class=" mb-0">{{this.location_grid.bp_no}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="background: #00ffcf1c;" *ngIf="sourceComponent !=='amr'">
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header justify-content-between">
+                <div class="card-title"> Load Survey</div>
+
+            </div>
+            <div class="card-body">
+                <div id="Loaddata" style="min-height: 485px;"></div>
+            </div>
+        </div>
+        <div class="card" style="background: #00ffcf1c;"  *ngIf="sourceComponent ==='amr'">
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header justify-content-between">
+                <div class="card-title"> Consumption Daily Amount </div>
+
+            </div>
+            <div class="card-body">
+                <div id="consumptiondailyamt" style="min-height: 177px;padding-bottom: 15px;">
+                </div>
+                <div id="consumptiondailyunit" style="min-height: 177px;">
+                </div>
+            </div>
+        </div>
+ <div class="card" style="background: #00ffcf1c;" *ngIf="sourceComponent ==='amr'">
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header justify-content-between">
+                <div class="card-title"> Consumption Monthly Amount </div>
+            </div>
+            <div class="card-body">
+                <div id="consumptionmonthlyamt" style="min-height: 177px;padding-bottom: 15px;">
+                </div>
+                <div id="consumptionmonthlyunit" style="min-height: 177px;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-4">
+        <div class="card" style="background: #00ffcf1c;">
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header justify-content-between">
+                <div class="card-title"> Load Sanctioned </div>
+            </div>
+            <div class="card-body">
+                <div id="LoadSanctionedchart"></div>
+            </div>
+        </div>
+        <div class="card" style="background: #00ffcf1c;">
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header">
+                <div class="card-title"> Recharge Transactions </div>
+
+            </div>
+            <div class="card-body" [ngClass]="this.sourceComponent === 'amr' ? 'rechargeTransactionMax':'rechargeTransaction'">
+                <ul class="list-unstyled project-transactions-card">
+                    <li *ngFor="let recharge of recentRechargeData; let i = index">
+                        <div class="d-flex align-items-top">
+                            <div class="me-3">
+                                <span class="avatar avatar-md bg-primary-transparent fs-16">{{ recharge.mode ? recharge.mode[0] : '---' }}</span>
+                            </div>
+                            <div class="flex-fill">
+                                <span class="d-block fw-medium">{{ recharge.r_message ? 'Amount:' : '---' }} {{ recharge.amount ? recharge.amount : '---' }}   </span>
+                            </div>
+                            <div>
+                                <h6 class="fw-semibold"> {{ recharge.recharge_time ? recharge.recharge_time : '---' }}</h6>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+ 
+<div class="row" *ngIf="sourceComponent !=='amr'">
+    <div class="col-xl-6">
+        <div class="card" style="background: #00ffcf1c;">
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header justify-content-between">
+                <div class="card-title"> Consumption Daily Amount </div>
+
+            </div>
+            <div class="card-body">
+                <div id="consumptiondailyamt" style="min-height: 170px;padding-bottom: 15px;">
+                </div>
+                <div id="consumptiondailyunit" style="min-height: 170px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card" style="background: #00ffcf1c;">
+            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header justify-content-between">
+                <div class="card-title"> Consumption Monthly Amount </div>
+            </div>
+            <div class="card-body">
+                <div id="consumptionmonthlyamt" style="min-height: 170px;padding-bottom: 15px;">
+                </div>
+                <div id="consumptionmonthlyunit" style="min-height: 170px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+<!-- Start:: row-1 -->
+<div class="row">
+   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12" >
+     <div class="row">
+         <div class="col-6">
+             <app-devicep2></app-devicep2>
+         </div>
+         <div class="col-6">
+             <app-dgstatusp2></app-dgstatusp2>
+         </div>
+     </div>
+     <div class="row">
+         <app-totalrecharge2></app-totalrecharge2>
+     </div>
+     <div class="row">
+ <app-seperate-data></app-seperate-data>
+     </div>
+ </div>
+ 
+           <div class="col-xxl-4 col-xl-6 col-lg-7">
+             <app-map></app-map>
+         </div>
+ 
+         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 column3rd" >
+             <div class="row">
+                 <app-pdaily></app-pdaily>
+             </div>
+             <div class="row">
+                 <div class="col-6">
+                    <div class="card custom-card" style="height: 29vh; min-height: 309px; justify-content: center; align-items: center;">
+                        <div class="top-left"></div>
+                         <div class="top-right"></div>
+                         <div class="bottom-left"></div>
+                         <div class="bottom-right"></div>
+                         <div class="card-header justify-content-between">
+                             <div class="card-title">App Status</div>
+                         </div>
+                         <div class="card-body player-statistics">
+                             <div id="app_Status"></div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-6">
+                    <div class="card custom-card" style="height: 29vh;min-height: 309px;">
+                        <div class="top-left"></div>
+                         <div class="top-right"></div>
+                         <div class="bottom-left"></div>
+                         <div class="bottom-right"></div>
+                         <div class="card-header justify-content-between">
+                             <div class="card-title"> Meter Status </div>
+                             <a href="javascript:void(0);" class="badge bg-primary-transparent border border-primary border-opacity-10 rounded-0" (click)="openInNewTab('Meter_Tabular','pvvnl')">View All</a>
+                         </div>
+                         <div class="card-body" style="overflow-y: auto;">
+                             <ul class="list-unstyled mb-0 skills-achieved-list">
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> Total Count </div>
+                                             <div>{{meterdata.totalMeterCount}}</div>
+                                         </div>
+                                 </li>
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> WOQ </div>
+                                             <div>{{meterdata.totalWOQ}}</div>
+                                         </div>
+                                 </li>
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> Infra </div>
+                                             <div>{{meterdata.totalInfraMeterCount}}</div>
+                                         </div>
+                                 </li>
+                                 <!-- <li>
+                        <a href="javascript:void(0);" class="no-pointer">
+                           <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                              <div> totalInstallMeterCount </div>
+                              <div>{{meterdata.totalInstallMeterCount}}</div>
+                           </div>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="javascript:void(0);" class="no-pointer">
+                           <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                              <div> totalInfra </div>
+                              <div>{{meterdata.totalInfra}}</div>
+                           </div>
+                           
+                        </a>
+                     </li> -->
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> Three Phase </div>
+                                             <div>{{meterdata.totalThreePhase}}</div>
+                                         </div>
+                                 </li>
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> Single Phase </div>
+                                             <div>{{meterdata.totalSinglePhase}}</div>
+                                         </div>
+                                 </li>
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> AEW </div>
+                                             <div>{{meterdata.totalAEW}}</div>
+                                         </div>
+                                 </li>
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> GENUS </div>
+                                             <div>{{meterdata.totalGENUS}}</div>
+                                         </div>
+                                 </li>
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> CT </div>
+                                             <div>{{meterdata.totalCT}}</div>
+                                         </div>
+                                 </li>
+                                 <li>
+                                         <div class="d-flex align-items-center justify-content-between mb-1 fs-13 meterlist">
+                                             <div> HPL </div>
+                                             <div>{{meterdata.totalHPL}}</div>
+                                         </div>
+                                 </li>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="row">
+                 <app-pyearly></app-pyearly>
+             </div>
+         </div>
+ </div>
+ 
+ 
+   <!-- Map next to Device and DG status, twice the size -->
+ 
+ 
+ 

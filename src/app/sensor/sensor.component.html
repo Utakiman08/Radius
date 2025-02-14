@@ -1,0 +1,386 @@
+<div class="page">
+    <!-- app-header -->
+    <app-header [showElements]="false" [ShowSomeElements]="false" [SearchInput]="false" customClass="no-padding" [sourcecomponent]="sourceComponent"></app-header>
+    <!-- Start::app-content -->
+    <div class="main-content app-content">
+        <div *ngIf="loading" class="loader-overlay">
+            <div class="loader"></div>
+        </div>
+        <div class="container-fluid">
+            <!-- Start:: row-3 -->
+            <div class="row" style="justify-content: center;">
+                <div class="col-xxl-2 col-md-4 col-sm-6">
+                    <div class="card Nowbg" (click)="onCardClick('Total')">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Total</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_count}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class="las la-chart-bar"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-2 col-md-4 col-sm-6" *ngIf="sourceComponent !=='npcl'|| 'amr'">
+                    <div class="card Nowbg" (click)="onCardClick('Infra')">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Infra Count</p>
+                                            <h5 class="mb-0 fw-medium">{{data.infra_count}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class="las la-chart-bar"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-2 col-md-4 col-sm-6">
+                    <div class="card Nowbg" (click)="onCardClick('Healthy')">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Sensor Healthy</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_healthy}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-check-shield'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-2 col-md-4 col-sm-6">
+                    <div class="card Nowbg" (click)="onCardClick('Unhealthy')">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Sensor Unhealthy</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_unhealthy}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class="ri ri-close-circle-line"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-2 col-md-4 col-sm-6">
+                    <div class="card Nowbg" (click)="onCardClick('Zero_reading')">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Zero Reading</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_zero_reading}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class="ri-file-warning-fill"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-2 col-md-4 col-sm-6">
+                    <div class="card Nowbg" (click)="onCardClick('Maintenance')">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Maintenance</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_maintenance}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class="las la-tools"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-2 col-md-4 col-sm-6">
+                    <div class="card Nowbg" (click)="onCardClick('Faulty')">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Faulty</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_faulty}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-error'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-2 col-md-4 col-sm-6">
+                        <div class="card Nowbg" (click)="onCardClick('Overload')">
+                            <div class="top-left"></div>
+                            <div class="top-right"></div>
+                            <div class="bottom-left"></div>
+                            <div class="bottom-right"></div>
+                            <div class="card-body background">
+                                <div class="d-flex align-items-top justify-content-between">
+                                    <div class="flex-fill ms-3">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div>
+                                                <p class="fs-14 fw-medium mb-2">Overload</p>
+                                                <h5 class="mb-0 fw-medium">{{data.sensor_overload}}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-error-circle'></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-xxl-2 col-md-4 col-sm-6" *ngIf="this.sourceComponent!== 'amr'">
+                    <div class="card Nowbg "  (click)="onCardClick('Overload_grid')" >
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Overload Grid</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_overload_grid}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-error-circle'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-2 col-md-4 col-sm-6" *ngIf="this.sourceComponent!== 'amr'">
+                    <div class="card Nowbg "  (click)="onCardClick('Overload_dg')" >
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Overload DG</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_overload_dg}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-error-circle'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-2 col-md-4 col-sm-6">
+                    <div class="card Nowbg " (click)="onCardClick('Cut_meter')">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Cut Meter</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_cut}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"> <i class='bx bx-unlink'></i> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-2 col-md-4 col-sm-6" *ngIf="this.sourceComponent!== 'amr'">
+                    <div class="card Nowbg " (click)="onCardClick('Cut_meter_grid')" >
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Cut Meter Grid</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_cut_grid}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-unlink'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-2 col-md-4 col-sm-6" *ngIf="this.sourceComponent!== 'amr'">
+                    <div class="card Nowbg " (click)="onCardClick('Cut_meter_dg')" >
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-body background">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <div class="flex-fill ms-3">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <div>
+                                            <p class="fs-14 fw-medium mb-2">Cut Meter DG</p>
+                                            <h5 class="mb-0 fw-medium">{{data.sensor_cut_dg}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="avatar avatar-md text-primary border bg-light"><i class='bx bx-unlink'></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End:: row-3 -->
+            <!-- Start:: row-4 -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card custom-card nocursor vhset" style="box-shadow: none;">
+                        <div class="top-left"></div>
+                        <div class="top-right"></div>
+                        <div class="bottom-left"></div>
+                        <div class="bottom-right"></div>
+                        <div class="card-header" style="overflow: auto;">
+                            <div class="card-title">Sensor {{this.currentDisplayType}} {{Sitename}}</div>
+                            <div class="btnholder1" style="min-width: 470px;">
+                                <!-- <select *ngIf="!this.Sitename" class="form-select" id="TypeOfData" (change)="seletedSite($event)">
+                                    <option value="" disabled selected>Select a site</option>
+                                    <option *ngFor="let site of sites" [value]="site.siteId">{{ site.name }}</option>
+                                </select> -->
+                                <select *ngIf="!Sitename" id="siteSelector" class="form-control">
+                                    <option value="" disabled selected>Select a site</option>
+                                    <option *ngFor="let site of sites" [value]="site.siteId">
+                                      {{ site.name }}
+                                    </option>
+                                  </select>
+                                  
+                                <span class="newtabheaders">Search:</span>
+                                <input type="text" id="filter-text-box" placeholder="Search..." (input)="onFilterTextBoxChanged()" />
+                                <button class="btn btn-primary-light rounded-pill btn-wave link" (click)="onExport('csv')">Download CSV</button>
+                                <button class="btn btn-outline-success rounded-pill btn-wave" (click)="onExport('xlsx')">Download Excel</button>
+                            </div>
+                        </div>
+                        <div class="card-body tables">
+                            <div id="myGrid" style="width: 100%; height: 100%;" class="ag-theme-quartz"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="exampleModalFullscreenXx1" tabindex="-1" aria-labelledby="exampleModalFullscreenXx1Label" aria-hidden="true" [ngClass]="{'show d-block': showModal}">
+                <div class="modal-dialog modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Sensor Details</h5>
+                            <div class="btnholder">
+                                <button class="btn btn-primary-light rounded-pill btn-wave link" (click)="onExportModal('csv')">Download CSV</button>
+                                <button class="btn btn-outline-success rounded-pill btn-wave" (click)="onExportModal('xlsx')">Download Excel</button>
+                                <input type="text" id="filter-text-box-modal" placeholder="Filter..." (input)="onFilterTextBoxChangedmodal()" />
+
+                            </div>
+                            <button type="button" class="btn-close" aria-label="Close" (click)="hideModal()"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="myModalGrid" style="width: 100%; height: 568px;" class="ag-theme-quartz"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- End:: row-4 -->
+        </div>
+    </div>
+    <!-- End::app-content -->
+    <!-- Footer Start -->
+    <app-footer></app-footer>

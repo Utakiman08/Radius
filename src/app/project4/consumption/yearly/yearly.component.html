@@ -1,0 +1,46 @@
+<div class="card custom-card" style="min-height: 306px;">
+  <div class="top-left"></div>
+  <div class="top-right"></div>
+  <div class="bottom-left"></div>
+  <div class="bottom-right"></div>
+<div class="card-header justify-content-between">
+  <div class="card-title">
+    Consumption Yearly {{this.activeConsumptionChart}}
+    <button *ngIf="!isSmallScreen" type="button" class="btn btn-outline-success btn-wave offline" (click)="showConsumptionChart('grid')">Grid</button>
+    <button *ngIf="!isSmallScreen" type="button" class="btn btn-outline-danger btn-wave offline" (click)="showConsumptionChart('dg')">DG</button>
+    
+   </div>
+  <div class="input-group" *ngIf="!isSmallScreen">
+      <select class="form-select" [(ngModel)]="selectedYear" (change)="loadDataFromsessionStorage()">
+        <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+      </select>
+    </div>
+    <div class="drop" *ngIf="!loading && isSmallScreen">
+      <a aria-label="anchor" href="javascript:void(0);"  class="op-4 consumptiondrop"  aria-expanded="false" (click)="toggle()">
+        <i class="bi bi-grid text-primary"></i></a>
+      <div class="dropdown consumptiondrop">
+           <ul class="dropdown-menu" [class.show]="show" role="menu">
+          <li (click)="showConsumptionChart('grid')" ><a class="dropdown-item" href="javascript:void(0);">Grid Amount</a></li>
+          <li (click)="showConsumptionChart('dg')" ><a class="dropdown-item" href="javascript:void(0);">DG Amount</a></li>
+          <li>
+            <div class="input-group" style="min-width: 158px; border-radius: 0;">
+              <select class="form-select" [(ngModel)]="selectedYear" (change)="loadDataFromsessionStorage()">
+                <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+          </li>
+        </ul> 
+      </div>
+    </div>
+    <div class="text-center" *ngIf="loading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+</div>
+   <div class="card-body">
+    <div id="yearly-consumption-grid" *ngIf="activeConsumptionChart === 'grid'"></div>
+    <div id="yearly-consumption-dg" *ngIf="activeConsumptionChart === 'dg'"></div>
+  </div>
+</div>
+ 

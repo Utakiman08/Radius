@@ -1,0 +1,90 @@
+.card-body{
+    overflow: none;
+}
+.text-primary{
+    color: var(--primary-color) !important;
+    opacity: 1;
+    }
+    .ag-theme-quartz {
+        --ag-background-color: #17f6f12b;
+        --ag-foreground-color: #fff; /* Change this to your desired default text color */
+        --ag-header-foreground-color: #fff; /* Change this to your desired header text color */
+        --ag-header-background-color: black;
+        --ag-odd-row-background-color: transparent;
+        --ag-even-row-background-color: transparent;
+      
+        .custom-cell {
+          color: #fff; /* Change this to your desired cell text color */
+          background-color: transparent !important;
+        }
+      
+        .ag-header-cell {
+          background-color: transparent;
+          color: #fff; /* Change this to your desired header text color */
+        }
+      
+        .ag-row {
+          color: #fff; /* Change this to your desired row text color */
+        }
+      }
+      
+      .modal {
+        z-index: 105;
+      }
+      .modal-backdrop {
+        z-index: 104;
+      }
+      .modal-content {
+        color: rgb(255, 255, 255);
+        background-color: #014436 !important;
+        border: 1px solid var(--default-border);
+        backdrop-filter: blur(8px);
+      }
+      .modal-header {
+        padding: 1rem 1.25rem;
+        border-block-end: 1px solid var(--default-border);
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+      }
+      .modal-header .modal-title {
+        font-weight: 400;
+        line-height: 1;
+      }
+      .modal-header .btn-close {
+        font-size: 0.625rem;
+      }
+      .modal-footer {
+        padding: 1rem 1.25rem;
+        border-block-start: 1px solid var(--default-border);
+      }
+      .modal.animated .modal-dialog {
+        transform: translate(0, 0);
+      }
+      .modal-body::before{
+        background-image: none !important;
+      }
+      .modal-body{
+        min-height:600px !important;
+      }
+      .btnholder{
+    margin-left: 10px;
+    display: flex;
+    gap: 10px;
+      }
+      #dg_status{
+        height: 100%;
+      }
+      .card.custom-card {
+        height: 29vh !important;
+      }
+      @media (max-width:500px) {
+        .rounded-pill{
+          font-size: 11px;
+          width: 152px;
+          padding: 0;
+          height: 38px;
+        }
+        .btnholder{
+          margin-right: 20px;
+            }
+      }

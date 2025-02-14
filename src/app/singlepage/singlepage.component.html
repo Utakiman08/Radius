@@ -1,0 +1,60 @@
+
+
+   
+    <div class="page" >
+      <!-- app-header -->
+      <app-header [showElements]="false" [SearchInput]="true" searchClass="searchpadding"  customClass="no-padding" [sourcecomponent]="sourceComponent" [showTimer]="false"></app-header>    
+      <!-- Start::app-content -->
+      <div class="main-content app-content">
+          <div class="container-fluid" >      <div class="row">
+        <div class="col-xXl-12">
+          <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+              <!-- <button class="btn btn-primary">Restore</button>
+              <button class="btn btn-primary" *ngIf="sourceComponent === 'pvvnl'">Send BP No SMS</button> -->
+            </div>
+            <div class="card-body">
+              <!-- Tabs navigation -->
+              <ul class="nav nav-tabs mb-3 nav-justified nav-style-1 d-sm-flex d-block" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" [ngClass]="{ 'active': activeTab === 'Graphical View' }" (click)="setActiveTab('Graphical View')" role="tab" aria-selected="activeTab === 'Graphical View'">Graphical View</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" [ngClass]="{ 'active': activeTab === 'Site Details' }" (click)="setActiveTab('Site Details')" role="tab" aria-selected="activeTab === 'Site Details'">Site Details</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" [ngClass]="{ 'active': activeTab === 'Consumer Details' }" (click)="setActiveTab('Consumer Details')" role="tab" aria-selected="activeTab === 'Consumer Details'">Consumer Details</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" [ngClass]="{ 'active': activeTab === 'Meter Details' }" (click)="setActiveTab('Meter Details')" role="tab" aria-selected="activeTab === 'Meter Details'">Meter Details</a>
+                </li>
+              </ul>
+
+              <!-- Tab content -->
+              <div class="tab-content">
+                <div class="tab-pane" [ngClass]="{ 'active show': activeTab === 'Graphical View' }" id="Graphical View1-justified" role="tabpanel">
+                  <app-graph *ngIf="activeTab === 'Graphical View'"></app-graph>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active show': activeTab === 'Site Details' }" id="Site Details1-justified" role="tabpanel">
+                  <app-sitedetails *ngIf="activeTab === 'Site Details'"></app-sitedetails>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active show': activeTab === 'Consumer Details' }" id="Consumer Details1-justified" role="tabpanel">
+                  <app-consumer-detail *ngIf="activeTab === 'Consumer Details'"></app-consumer-detail>
+                </div>
+                <div class="tab-pane" [ngClass]="{ 'active show': activeTab === 'Meter Details' }" id="Meter Details1-justified" role="tabpanel">
+                  <app-meterdetail *ngIf="activeTab === 'Meter Details'"></app-meterdetail>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
+</div>
+<app-footer>  </app-footer>
+</div>

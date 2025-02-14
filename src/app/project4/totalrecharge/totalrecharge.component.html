@@ -1,0 +1,158 @@
+<div class="card custom-card"  
+  style="min-height: 306px;">
+  <div class="top-left"></div>
+  <div class="top-right"></div>
+  <div class="bottom-left"></div>
+  <div class="bottom-right"></div>
+<div class="card-header justify-content-between">
+<div class="card-title">
+  Recharge Status {{this.displayvalue}}
+  
+  <button *ngIf="!isSmallScreen" type="button" class="btn btn-outline-success btn-wave offline" (click)="setupvalue('Grid',true)">Grid</button>
+  <button *ngIf="!isSmallScreen" type="button" class="btn btn-outline-danger btn-wave offline" (click)="setupvalue('DG',true)">DG</button>
+   
+</div>
+    <div class="drop" *ngIf="!loading && isSmallScreen">
+      <a aria-label="anchor" href="javascript:void(0);"  class="op-4 consumptiondrop"  aria-expanded="false" (click)="toggle()">
+        <i class="bi bi-grid text-primary"></i></a>
+      <div class="dropdown consumptiondrop">
+           <ul class="dropdown-menu" [class.show]="show" role="menu">
+          <li (click)="setupvalue('Grid',true)" ><a class="dropdown-item" href="javascript:void(0);">Grid Amount</a></li>
+          <li (click)="setupvalue('DG',true)" ><a class="dropdown-item" href="javascript:void(0);">DG Amount</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center" *ngIf="loading">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+<div class="test" style="overflow: auto;">
+  <div class="card-body-total" id="clock" style="min-height: 253px !important; height: 22vh; min-width: 375px;">
+    <!-- <button (click)="resetHDFC()">reset</button> testing puposes -->
+    <div class="clock-container">
+       <!-- Minutes -->
+       <div class="minutes">
+                  <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit1-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+         </div>
+     
+       <!-- Hours -->
+       <div class="hours">
+                  <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit2-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+         </div>
+     
+       <!-- Additional digits (copy as needed) -->
+       <div class="hours2">
+           <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit3-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+       </div>
+       <div class="hours3">
+           <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit4-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+         </div>
+        <div class="hours4">
+           <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit5-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+  
+        </div>
+        <div class="hours5">
+           <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit6-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+        </div>
+        <div class="hours6">
+           <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit7-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+        </div>
+        <div class="hours7">
+           <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit8-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+        </div>
+        <div class="hours8">
+           <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit9-' + idx">
+             <div class="up">
+               <div class="digit">{{ idx }}</div>
+             </div>
+             <div class="down">
+               <div class="digit">{{ idx }}</div>
+             </div>
+           </div>
+           <div class="dot"></div>
+        </div>
+        <div class="hours9">
+            <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit10-' + idx">
+              <div class="up">
+                <div class="digit">{{ idx }}</div>
+              </div>
+              <div class="down">
+                <div class="digit">{{ idx }}</div>
+              </div>
+            </div>
+         </div>
+         <div class="hours10">
+            <div class="number" *ngFor="let i of [].constructor(10); let idx = index" [id]="'unit11-' + idx">
+              <div class="up">
+                <div class="digit">{{ idx }}</div>
+              </div>
+              <div class="down">
+                <div class="digit">{{ idx }}</div>
+              </div>
+            </div>
+         </div>
+     </div>
+  </div>   
+</div>
+
+
+                     
+</div>

@@ -1,0 +1,176 @@
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card" style="background: #00ffcf1c;" >            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-body py-0">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="p-3 custom-border-end"> <span class="d-block fs-18 fw-semibold mb-1">Sensor Name</span>
+                            <h6 class="fw-semibold mb-0">{{this.MeterDetails.sensor_name}}({{this.MeterDetails.serial_no}})</h6>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="p-3 custom-border-end"> <span class="d-block fs-18 fw-semibold mb-1">DG Billing Type</span>
+                            <h6 class="fw-semibold mb-0">
+                                {{ this.MeterDetails.dg_billing_type === 'KWH' ? 'KWh' : (this.MeterDetails.dg_billing_type === 'KVAH' ? 'KVAh' : this.MeterDetails.dg_billing_type) }}
+                              </h6>                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="p-3 custom-border-end"> <span class="d-block fs-18 fw-semibold mb-1">Grid Billing Type</span>
+                            <h6 class="fw-semibold mb-0">
+                                {{ this.MeterDetails.grid_billing_type === 'KWH' ? 'KWh' : (this.MeterDetails.grid_billing_type === 'KVAH' ? 'KVAh' : this.MeterDetails.grid_billing_type) }}
+                              </h6>
+                    </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="p-3 custom-border-end"> <span class="d-block fs-18 fw-semibold mb-1">DIC PORT</span>
+                            <h6 class="fw-semibold mb-0">{{this.MeterDetails.dic_port}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xxl-3 col-xl-6">
+<div class="card" style="background: #00ffcf1c;" >            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header justify-content-between">
+                <div class="card-title"> Current R|Y|B </div>
+
+            </div>
+            <div class="card-body pt-0">
+                <div id="PiechartCurrent" class="text-center" style="min-height: 329.967px;">
+                </div>
+                <div class="d-flex align-items-center mb-3" >
+                    <div class="flex-fill d-flex align-items-center" >
+                        <div class="me-2" > <span class="avatar avatar-sm rounded-circle bg-danger-transparent"><i class="ri-flashlight-line fs-14"></i></span> </div> <span>R Current</span> </div>
+                    <div class="text-end" > <span class="badge bg-danger-transparent">{{this.MeterDetails.R_Current}} </span> </div>
+                </div>
+                <div class="d-flex align-items-center mb-3" >
+                    <div class="flex-fill d-flex align-items-center" >
+                        <div class="me-2" > <span class="avatar avatar-sm rounded-circle bg-warning-transparent"><i class="ri-flashlight-line fs-14"></i></span> </div> <span>Y Current</span> </div>
+                    <div class="text-end" > <span class="badge bg-warning-transparent">{{this.MeterDetails.Y_Current}} </span> </div>
+                </div>
+                <div class="d-flex align-items-center mb-3" >
+                    <div class="flex-fill d-flex align-items-center" >
+                        <div class="me-2" > <span class="avatar avatar-sm rounded-circle bg-primary-transparent"><i class="ri-flashlight-line fs-14"></i></span> </div> <span>B Current</span> </div>
+                    <div class="text-end" > <span class="badge bg-primary-transparent">{{this.MeterDetails.B_Current}} </span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-3 col-xl-6">
+<div class="card" style="background: #00ffcf1c;" >            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header justify-content-between">
+                <div class="card-title">Voltage R|Y|B </div>
+            </div>
+            <div class="card-body pt-0">
+                <div id="PiechartVoltage" class="text-center" style="min-height: 329.967px;">
+                </div>
+                <div class="d-flex align-items-center mb-3" >
+                    <div class="flex-fill d-flex align-items-center" >
+                        <div class="me-2" > <span class="avatar avatar-sm rounded-circle bg-danger-transparent"><i class="ri-line-chart-line fs-14"></i></span> </div> <span>R Voltage</span> </div>
+                    <div class="text-end" > <span class="badge bg-danger-transparent">{{this.MeterDetails.R_Voltage}} </span> </div>
+                </div>
+                <div class="d-flex align-items-center mb-3" >
+                    <div class="flex-fill d-flex align-items-center" >
+                        <div class="me-2" > <span class="avatar avatar-sm rounded-circle bg-warning-transparent"><i class="ri-line-chart-line fs-14"></i></span> </div> <span>Y Voltage</span> </div>
+                    <div class="text-end" > <span class="badge bg-warning-transparent">{{this.MeterDetails.Y_Voltage}} </span> </div>
+                </div>
+                <div class="d-flex align-items-center mb-3" >
+                    <div class="flex-fill d-flex align-items-center" >
+                        <div class="me-2" > <span class="avatar avatar-sm rounded-circle bg-primary-transparent"><i class="ri-line-chart-line fs-14"></i></span> </div> <span>B Voltage</span> </div>
+                    <div class="text-end" > <span class="badge bg-primary-transparent">{{this.MeterDetails.B_Voltage}} </span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-6">
+<div class="card" style="background: #00ffcf1c;" >            <div class="top-left"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="top-right"></div>
+            <div class="card-header pb-2 border-bottom justify-content-between">
+                <div class="card-title"> Consumer Details </div>
+            </div>
+            <div class="card-body p-0">
+                <ul class="list-group border-0 crypto-list">
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">DIC ID</p>
+                            <p class="text-light mb-0 fs-15"> <span class="numberfont">{{this.MeterDetails.dic_id}}</span> </p>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Data Logger ID</p>
+                            <p class="text-light mb-0 fs-15"> <span class="numberfont">{{this.MeterDetails.data_logger_id}}</span></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-normal text-light colorchange">Grid Load Sanctioned</p>
+                            <p class="text-light mb-0 fs-15"> <span class="numberfont">{{this.MeterDetails.grid_load_sanctioned}}</span> </p>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">DG Load Sanctioned</p>
+                            <p class="text-light mb-0 fs-15"> <span class="numberfont">{{this.MeterDetails.dg_load_sanctioned}}</span> </p>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">GRID Reading(kWh/kVAh)</p>
+                            <p class="text-light mb-0 fs-15"> <span class="numberfont">{{this.MeterDetails.grid_reading}}</span> </p>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">DG Reading(kWh/kVAh)</p>
+                            <p class="text-light mb-0 fs-15"> <span class="numberfont">{{this.MeterDetails.dg_reading}}</span> </p>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Last Reading Updated Grid</p>
+                            <p class="text-light mb-0 fs-15"> <span class="numberfont">{{this.MeterDetails.last_reading_updated_grid}}</span> </p>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Last Reading Updated DG</p>
+                            <p class="text-light mb-0 fs-15"> <span class="numberfont">{{this.MeterDetails.last_reading_updated_dg}}</span> </p>
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">DG Overload</p>
+                             <h6 class="fw-semibold">
+                                 <span class="numberfont" *ngIf="this.MeterDetails.dg_over_load === 'Y'"><i class="las la-check"></i></span><span class="numberfont" *ngIf="this.MeterDetails.dg_over_load  === 'N'"><i class="las la-times"></i></span> 
+                             </h6> 
+                        </div>
+                    </li>
+                    <li class="list-group-item flex-column align-items-start border-0 bg-transparent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Grid Overload</p>
+                             <h6 class="fw-semibold">
+                                 <span class="numberfont" *ngIf="this.MeterDetails.grid_over_load === 'Y'"><i class="las la-check"></i></span><span class="numberfont" *ngIf="this.MeterDetails.grid_over_load  === 'N'"><i class="las la-times"></i></span> 
+                             </h6> 
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

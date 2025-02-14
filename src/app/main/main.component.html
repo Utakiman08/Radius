@@ -1,0 +1,18 @@
+   <div class="page" style="margin: 0">
+      <div class="main-content app-content">
+         <div class="container-fluid">
+
+      <app-header [showElements]="true" customClass="no-padding" [sourcecomponent]="sourceComponent"></app-header>
+
+
+     <div class="controlcontainer">
+      <router-outlet (activate)="onComponentActivate($event)"></router-outlet>
+      </div>
+      </div>
+   </div>
+   <app-footer> </app-footer>
+</div>
+
+ 
+
+ 

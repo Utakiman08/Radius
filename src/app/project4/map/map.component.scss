@@ -1,0 +1,840 @@
+*{
+  font-family: "Work Sans", sans-serif;
+}
+@media (max-width:450px) {
+  .mobileview{
+    padding: 0;
+    font-size: 13px !important;
+  }
+}
+#map {
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+  }
+  .leaflet-left{
+    right: 0;
+  }
+  .leaflet-top{
+    top: 39px !important;
+  }
+/* Default (light mode) */
+.light-mode .leaflet-layer,
+.light-mode .leaflet-control-zoom-in,
+.light-mode .leaflet-control-zoom-out {
+  filter: invert(0%) hue-rotate(161deg) brightness(105%) contrast(100%);
+}
+
+/* Dark mode */
+.dark-mode .leaflet-layer,
+.dark-mode .leaflet-control-zoom-in,
+.dark-mode .leaflet-control-zoom-out {
+  filter: invert(100%) hue-rotate(234deg) brightness(95%) contrast(90%);
+}
+  .card-header{
+    background: black;
+  }
+.leaflet-popup-content-wrapper {
+  color: #fdfdfd;
+  border-radius: 0px;
+  padding: 0 !important;
+}
+.leaflet-popup-content{
+  margin: 0 !important;
+  width: 400px !important;
+}
+
+
+:host {
+  display: block;
+  position: relative; /* Make sure the slide menu is positioned relative to this host element */
+  height: 600px; /* Same as the map height */
+}
+/* Hide the nested ul by default */
+/* Hide the nested ul by default */
+.toggle-container {
+  top: 133px;
+  z-index: 99;
+  position: absolute;
+  width: 27px;
+  height: 61px;
+  right: 29px;
+  background-color: grey;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+}
+
+.toggle-container.dark {
+  background-color: #333;
+}
+
+.toggle-btn {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.dark-mode  .leaflet-bar {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  
+}
+.light-mode .leaflet-bar {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  
+}
+
+/* Light mode: move the ball to the bottom, allowing some padding inside */
+.toggle-container.light-mode .toggle-btn {
+  transform: translateY(16px); /* Slide down */
+  background-color: #333;
+}
+
+/* Dark mode: keep the ball at the top */
+.toggle-container.dark-mode .toggle-btn {
+  transform: translateY(-15px); /* Slide up */
+  background-color: white;
+}
+
+
+.sensor-list {
+  display: none; /* Hide by default */
+  position: absolute; /* Allows positioning relative to parent */
+  left: 100%; /* Position it to the right of the parent li */
+  top: 0; /* Align it with the top of the parent li */
+  margin-left: 10px; /* Adds a small gap */
+  background-color: rgba(255, 255, 255, 0.379);
+  color: white;
+  padding: 5px; /* Some padding */
+  border: 1px solid #ccc; /* Border for differentiation */
+  z-index: 99; /* Make it higher than the toggle button */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Show the nested ul on hover */
+.location-item:hover .sensor-list {
+  display: block;
+}
+
+/* Ensure the parent li has position relative for proper positioning of the nested ul */
+.location-item  {
+  position: relative; /* Ensures child absolute positioning is relative to this parent */
+}
+
+
+/* Show the nested ul on hover */
+.AutoIcon{
+  position: absolute;
+    top: 20px;
+    right: 141px;
+    z-index: 99;
+    background: transparent;
+    border: none;
+}
+
+.StaticIcon{
+  position: absolute;
+  top: 20px;
+  right: 79px;
+  z-index: 99;
+  background: transparent;
+  border: none;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 99; /* Ensure button is above the map */
+  background-color: #235b6dab;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.slide-menu {
+  position: absolute;
+  top: 17px;
+  left: 16px;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.379);
+  border: 1px solid #ddd; 
+  padding: 10px;
+  max-height: 438px;  
+  width: 200px;
+  z-index: 98; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  display: block;
+}
+.list {
+  overflow-y: auto;
+  max-height: 338px;
+  position: relative;
+  scroll-behavior: smooth; /* Enables smooth scrolling for scrollTop changes */
+}
+
+@keyframes blink {
+  0% { background-color: rgba(215, 88, 88, 0.747); }
+  50% { background-color: transparent; }
+  100% { background-color: rgb(236, 60, 60); }
+}
+.blinking-red {
+  animation: blink 2s infinite;
+}
+.li{
+  margin: 1px;
+}
+.blinking-yellow {
+  animation: blinkyellow 2s infinite;
+  -webkit-animation: blinkyellow 2s infinite; /* For older Webkit browsers */
+}
+
+@keyframes blinkyellow {
+  0% { background-color: rgba(209, 215, 88, 0.747); }
+  50% { background-color: transparent; }
+  100% { background-color: rgb(236, 224, 60); }
+}
+
+@-webkit-keyframes blinkyellow {
+  0% { background-color: rgba(209, 215, 88, 0.9); }
+  50% { background-color: transparent; }
+  100% { background-color: rgb(236, 224, 60); }
+}
+
+.blinking-yellow-red {
+  animation: blinkyellowred 2s infinite;
+  -webkit-animation: blinkyellowred 2s infinite; /* For older Webkit browsers */
+}
+
+@keyframes blinkyellowred {
+  0% { background-color: rgba(215, 177, 88, 0.747); }
+  50% { background-color: transparent; }
+  100% { background-color: rgb(236, 160, 60); }
+}
+
+@-webkit-keyframes blinkyellowred {
+  0% { background-color: rgba(215, 177, 88, 0.9); }
+  50% { background-color: transparent; }
+  100% { background-color: rgb(236, 160, 60); }
+}
+
+.slide-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.slide-menu li {
+  cursor: pointer;
+  padding: 5px;
+  margin-top: 4px;
+}
+#filter-text-box {
+  border: none;              /* Remove all borders */
+  border-bottom: 2px solid #02bcb6b2; /* Add a solid bottom border, adjust color and thickness as needed */
+  outline: none;             /* Remove the default outline when input is focused */
+  padding: 8px;   
+  background-color: transparent;  
+  width: 100%;
+ /* Optional: Add some padding for better appearance */
+}
+#filter-text-box::placeholder {
+  color: white; /* Set placeholder color to white */
+}
+.slide-menu li:hover {
+  background-color: hwb(0 94% 6% / 0.404);
+}
+
+
+.toggle-button:hover {
+  background-color: #196b7cca; /* Slightly darker on hover */
+}
+
+
+
+.popup-Live {
+  padding: 13px 24px 13px 20px;
+}
+
+.animate-Live {
+  /* Animation properties */
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #07533d,
+    #07533d 5%,
+    #07533d 60%,
+    #07533d 95%
+  );
+  
+  border: solid 5px transparent;
+  --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, rgb(0, 255, 162), rgb(0, 108, 68) 99%, transparent);
+}
+
+.popup-Maintenance {
+  background: #9f1414; /* Red background */
+  padding: 13px 24px 13px 20px;
+}
+@media (max-height:1080px) {
+  .popup-Live{
+    max-height: 405px;
+    overflow: auto;
+  }
+  .popup-Maintenance{
+    max-height: 405px;
+    overflow: auto;
+  }
+}
+@media (max-width:450px) {
+  .leaflet-popup-content-wrapper{
+    max-width: 240px;
+    display: flex;
+  }
+    .leaflet-popup-content-wrapper{
+      max-width: 240px;
+      display: flex;
+    }
+}
+.animate-Maintenance {
+  /* Animation properties */
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #9f1414,
+    #9f1414 5%,
+    #9f1414 60%,
+    #9f1414 95%
+  );
+  
+  border: solid 5px transparent;
+  --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, rgb(255, 98, 0), rgb(232, 4, 4) 99%, transparent);
+}
+
+
+
+
+.animate-grid {
+  /* Animation properties */
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #000000,
+    #000000 5%,
+    #000000 60%,
+    #000000 95%
+  );
+  
+  border: solid 5px transparent !important;
+  --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, rgb(33, 181, 117), rgb(22, 140, 103) 99%, transparent);
+}
+.animate-dg {
+  /* Animation properties */
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #000000,
+    #000000 5%,
+    #000000 60%,
+    #000000 95%
+  );
+  
+  border: solid 5px transparent !important;
+  --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, rgb(181, 58, 33), rgb(140, 42, 33) 99%, transparent);
+}
+
+
+
+  .custom-cluster-icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .donut-cluster {
+    position: relative;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .donut {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  
+  .donut-segment {
+    transform-origin: center;
+    transition: stroke-dasharray 0.6s ease;
+  }
+  
+  .dark-mode .donut-count {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .light-mode .donut-count {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+  }
+  @keyframes fade { 
+    from { opacity: 0.5; } 
+  }
+
+  .blinking {
+    animation: fade 1s infinite alternate;
+  }
+
+.Open-modal{
+  position: relative;
+  right: 0px;
+  border: none;
+  background: #369a52;
+  border-radius: 5px;
+}
+
+.card-body{
+  height: 100%;
+}
+  
+
+  .modal {
+    z-index: 105;
+  }
+  .modal-backdrop {
+    z-index: 104;
+  }
+  // .modal-content {
+  //   color: rgb(255, 255, 255);
+  //   background-image: url(../../../assets/images/Background2.png);
+  //   background-size: cover; /* Ensures the image covers the whole background */
+  //   background-position: center; /* Centers the image */
+  //   background-repeat: no-repeat; /* Prevents repeating the image */
+  //   border: 1px solid var(--default-border);
+  //   background-color: rgb(0, 0, 0);
+    
+  // }
+  .modal-content {
+    background-color: rgb(0, 0, 0);
+    /* Multiple box-shadows: */
+    box-shadow: 
+      inset 84px 75px 230px -43px rgba(var(--primary-rgb), 0.5),  /* Inside shadow */
+      0px 4px 20px rgba(0, 0, 0, 0.7),  /* Black shadow behind */
+      0px 10px 30px rgba(0, 0, 0, 0.6); /* Outside shadow */
+    color: rgb(219, 233, 244) ;
+  }
+  
+
+.modal
+
+  .modal-header {
+    padding: 1rem 1.25rem;
+    border-block-end: none;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  .modal-header .modal-title {
+    font-weight: 400;
+    line-height: 1;
+    color: white;
+    font-size: 2rem;
+  }
+  .modal-header .btn-close {
+    font-size: 0.625rem;
+  }
+  .modal-footer {
+    padding: 1rem 1.25rem;
+    border-block-start: 1px solid var(--default-border);
+  }
+  .modal-body {
+    display: flex;
+    min-height: 700px;
+    color: rgb(255, 255, 255);
+    position: relative; /* Required to position the pseudo-element */
+    border: 1px solid var(--default-border);
+    z-index: 1; /* Ensures content is above the background */
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.modal-body::before {
+    content: ""; /* Required for a pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      // linear-gradient(rgba(0, 183, 183, 0.7), rgba(0, 254, 254, 0.155)),
+         url(../../../assets/images/ModalImage.png);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    filter: blur(0); /* Adjust the blur value as needed */
+    z-index: -1; /* Puts the background behind the content */
+}
+
+
+@media(max-width:1200px){
+  .map{
+    height: 500px;
+  }
+}
+
+@media (max-width: 1199px) {
+      .sensor , .datalogger ,.dic {
+      width: 230px !important;
+      height: 160px !important;
+    }
+    .lists{
+      font-size: 17px !important;
+    }
+    .datalogger{
+      left: 35% !important;
+    }
+    .lists-status{
+      font-size: 14px !important ;
+    }
+    .bottomrows{
+      font-size: 14px !important;
+    }
+
+}
+.bottomrows{
+  color: white;
+}
+.datalogger{
+  position: absolute;
+  top: 20px;
+  left: 36%;
+}
+  .dic{
+    position: absolute;
+    right: 3%;
+    top: 106px;
+  }
+.sensor{
+  position: absolute;
+  top: 102px;
+  left: 3%;
+}
+.sensor, .dic, .datalogger {
+  width: 300px;
+  overflow: hidden;
+  height: 180px;
+  padding: 0;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  display: block;
+  border: 0.1px solid grey;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.5490196078);
+  box-shadow: 31px 4px 38px rgb(0 0 0 / 56%);
+}
+
+.ModalFooter {
+  position: relative;
+  bottom: 0;
+  border-top: solid 1px white;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  
+}
+.ModalFooter:hover{
+  cursor: pointer;
+}
+
+
+.listheader {
+  display: flex;
+  justify-content: space-between; /* Distributes space between items */
+  font-size: 22px;
+  font-weight: 600;
+  padding: 0.25rem;
+  background-color: #404040;
+  color: rgb(0, 255, 255);
+  padding: 0.25rem 0px 0.25rem 15px;
+  border-bottom: 0.1px solid white;
+
+}
+.lists ,.lists-status{
+  list-style: none;
+  font-size: 21px;
+  margin-bottom: 7px;
+  margin-top: 7px;
+  color: white;
+}
+ .dgModal{
+height: auto;
+border-radius: 0.5rem;
+border: 1px solid grey;
+position: absolute;
+left: 3%;
+overflow: hidden;
+width: 45%;
+bottom: 18px;
+backdrop-filter: blur(10px);
+margin-bottom: 10px;
+background-color: rgba(0, 0, 0, 0.719);
+
+
+}
+
+.consumption{
+  height: 290px;
+  border-radius: 0.5rem;
+  border: 1px solid grey;
+  position: absolute;
+right: 3%;
+bottom: 18px;
+  overflow: hidden;
+  width: 45%;
+  backdrop-filter: blur(10px);
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.722);
+}
+.dgcomps{
+  position: relative;
+  width: auto;
+height: auto;
+border-radius: 0.75rem;
+border: solid 1px grey;
+margin: 7px;
+margin-top: 10px;
+background-color: black;
+padding: 4px;
+}
+.gridimage{
+  height: 50px;
+  position: relative;
+}
+.gridimageComponent{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  position: relative;
+}
+.row{
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 0.5rem; /* Adds space between the dot and the text */
+}
+.status {
+  display: flex;
+  gap: 1rem; /* Adds space between the status items */
+}
+
+.status div {
+  display: flex;
+  align-items: center; /* Aligns the text and circle vertically */
+  margin-right: 8px;
+}
+.Live {
+  background-color: #5AC6AA;
+}
+
+.Faulty {
+  background-color: #FCF05A;
+}
+
+.Closed {
+  background-color: #A0A0A0;
+}
+
+
+.dgcondition {
+  display: inline-block; /* Allows width to be set */
+  width: 40px; /* Set the width you want */
+  text-align: center; /* Optional: Center the text inside */
+  background-color: rgb(11, 204, 218); /* Optional: Add a background for visibility */
+  color: black;
+  border-radius: 5px;
+  margin-left: 7px;
+  margin-bottom: 3px;
+}
+
+.time{
+  display: inline-block; /* Allows width to be set */
+  width: 70px; /* Set the width you want */
+  text-align: center; /* Optional: Center the text inside */
+  color: black;
+  border-radius: 5px;
+  margin-left: 7px;
+  background-color: #A0A0A0;
+  position: absolute;
+    right: 0;
+}
+
+
+
+@media (min-width: 576px) {
+  .modal{
+    --bs-modal-margin: 8.75rem !important;
+  }
+}
+
+
+
+.animate {
+
+  --border-angle: 0turn; /* For animation */
+  background: 
+    var(--main-bg) padding-box,
+    var(--gradient-border) border-box,
+    var(--main-bg) border-box;
+  
+  background-position: center center;
+  
+  animation: bg-spin 3s linear infinite;
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+/* Define the custom property for --border-angle */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+.loader {
+  width: 60px;
+  aspect-ratio: 1;
+  display: grid;
+  grid: 50% / 50%;
+  color: #25b09b;
+  --_g: no-repeat linear-gradient(currentColor 0 0);
+  background: var(--_g), var(--_g), var(--_g);
+  background-size: 50.1% 50.1%;
+  animation: 
+    l6-0   1.5s infinite steps(1) alternate,
+    l6-0-0 3s   infinite steps(1);
+}
+
+.loader::before {
+  content: "";
+  background: currentColor;
+  transform: perspective(150px) rotateY(0deg) rotateX(0deg);
+  transform-origin: bottom right;
+  animation: l6-1 1.5s infinite linear alternate;
+}
+
+@keyframes l6-0 {
+  0%  {background-position: 0    100%,100% 100%,100% 0}
+  33% {background-position: 100% 100%,100% 100%,100% 0}
+  66% {background-position: 100% 0   ,100% 0   ,100% 0}
+}
+
+@keyframes l6-0-0 {
+  0%  {transform: scaleX(1)  rotate(0deg)}
+  50% {transform: scaleX(-1) rotate(-90deg)}
+}
+
+@keyframes l6-1 {
+  16.5%{transform:perspective(150px) rotateX(-90deg)  rotateY(0deg)    rotateX(0deg);filter:grayscale(0.8)}
+  33%  {transform:perspective(150px) rotateX(-180deg) rotateY(0deg)    rotateX(0deg)}
+  66%  {transform:perspective(150px) rotateX(-180deg) rotateY(-180deg) rotateX(0deg)}
+  100% {transform:perspective(150px) rotateX(-180deg) rotateY(-180deg) rotateX(-180deg);filter:grayscale(0.8)}
+}
+
+/* Full-Screen Loader Overlay */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(48, 48, 48, 0.622);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+
+@media (max-width: 991px) {
+  .modal-dialog {
+      max-width: 800px !important; 
+      margin-right: auto;
+      margin-left: auto;
+  }
+
+}
+.gridConsumption{
+  color: rgb(0, 255, 213); 
+  margin: 0 7px 0 4px;
+}
+.dg{
+  color: rgb(255, 0 ,0);
+  margin: 0 7px 0 4px;
+}
+.dg,.gridConsumption{
+  position: relative;
+
+}
+@media (max-width:832px) {
+  .sensor, .dic, .datalogger {
+    position: relative;
+    left: 0 !important;
+    right: 0;
+    top: 0;
+    width: 100% !important;
+    margin: 0px 0 10px 0px;
+}
+  .dgModal,.consumption{
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .modal-body{
+    display: block;
+  }
+}
+.icon-button {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.icon-button.active {
+  opacity: 1;
+}
+
+.icon-button.inactive {
+  opacity: 0.5;
+}
+
+@media (max-width:500px) {
+  table{
+    font-size: 11px !important ;  
+  }
+  .toggle-button{
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,65 @@
+    .numberfont{
+        color: white;
+    }
+    .card-title{
+        font-size: 1.55rem;
+    }
+    @media (min-width: 1200px) {
+        .col-xl-12 {
+            flex: 0 0 auto;
+            width: 100% !important;
+        }
+    }
+    .row{
+        --bs-gutter-x : 0.5rem !important;
+    }
+    .btn-outline-success{
+        --bs-btn-color: #00ff89 !important;
+        --bs-btn-border-color: #07ff8c !important;
+      }
+      .btn-outline-danger{
+        --bs-btn-color:#ff0018 !important;
+        --bs-btn-border-color:#ff0018 !important;
+        font-weight: 800;
+      }
+      .custom-border-end{
+        margin-left: 10px;
+      }
+      .fs-14 {
+        font-size: 0.97rem !important;
+    }
+    .la-check{
+        color: rgb(13, 255, 0);
+        font-size: 20px;
+      }
+      .la-times{
+        color: rgb(255, 60, 0);
+        font-size: 20px;
+      }
+      .d-block{
+        color: var(--primary-color);
+      }
+      @media (max-width:1678px) and (min-width:1401px){
+        #consumptiondaily,#consumptionmontly{
+          min-height: 552px;
+        }
+        #piechart{
+          min-height: 646px;
+        }
+        
+      }
+
+      @media (min-width: 1401px) {
+        .col-xxl-6 {
+            flex: 0 0 auto;
+            width: 50%;
+        }
+    }
+    .colorchange{
+      color: var(--primary-color)  !important;
+    }
+    @media (max-width:500px) {
+      h6,.fs-18{
+        font-size: 14px;
+      }
+    }

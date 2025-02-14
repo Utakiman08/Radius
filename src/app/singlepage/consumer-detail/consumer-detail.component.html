@@ -1,0 +1,242 @@
+    <!-- Start:: row-1 -->
+    <div class="row" >
+        <div class="col-xl-12" >
+            <div class="card" style="background: #00ffcf1c;" >                
+                <div class="top-left" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="top-right" ></div>
+                <div class="card-body py-0" >
+                    <div class="row align-items-center" >
+                        <div [ngClass]=" this.amritems ? 'col-xl-3 col-sm-6' : 'col-xl-2 col-sm-6'" >
+                            <div class="p-3 custom-border-end" > <span class="d-block fs-18 mb-1 fw-semibold">Name</span>
+                                <h6 class=" mb-0">{{this.location_grid.consumer_name}}</h6> 
+                            </div>
+                        </div>
+                        <div [ngClass]=" this.amritems ? 'col-xl-3 col-sm-6' : 'col-xl-2 col-sm-6'">
+                            <div class="p-3 custom-border-end" > <span class="d-block fs-18 mb-1 fw-semibold">Flat Number</span>
+                                <h6 class=" mb-0">{{this.location_grid.location_no}}</h6> 
+                            </div>
+                        </div>
+                        <div [ngClass]=" this.amritems ? 'col-xl-3 col-sm-6' : 'col-xl-2 col-sm-    6'">
+                            <div class="p-3 custom-border-end" > <span class="d-block fs-18 mb-1 fw-semibold">Flat Id</span>
+                                <h6 class=" mb-0">{{this.location_grid.location_id}}</h6> 
+                            </div>
+                        </div>
+                        <div [ngClass]=" this.amritems ? 'col-xl-3 col-sm-6' : 'col-xl-2 col-sm-6'">
+                            <div class="p-3 custom-border-end" > <span class="d-block fs-18 mb-1 fw-semibold">Account Id</span>
+                                <h6 class=" mb-0">{{this.location_grid.location_id}}</h6> 
+                            </div>
+                        </div>
+                        <div [ngClass]=" this.amritems ? 'col-xl-3 col-sm-6' : 'col-xl-2 col-sm-6'" *ngIf="!this.amritems">
+                            <div class="p-3 custom-border-end" > <span class="d-block fs-18 mb-1 fw-semibold">Meter Number</span>
+                                <h6 class=" mb-0">{{this.location_grid.meter_id}}</h6> 
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-6" *ngIf="sourceComponent!== 'amr'" >
+                            <div class="btn-list text-xl-end p-3 pb-4">
+                                <button class="btn btn-primary" (click)="toggleData()">
+                                    Switch to {{ isGridActive ? 'DG' : 'Grid' }} Data
+                                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End:: row-1 -->
+    <!-- Start:: row-2 -->
+    <div class="row" >
+        <div class="col-xxl-6" >
+            <div class="row">
+                <div class="col-xxl-6 col-md-6" >
+                    <div class="card" style="background: #00ffcf1c;" >
+                        <div class="top-left" ></div>
+                        <div class="bottom-left" ></div>
+                        <div class="bottom-right" ></div>
+                        <div class="top-right" ></div>
+                        <div class="card-body" >
+                            <div class="mb-3 d-flex align-items-start justify-content-start" >
+                                <div> 
+                                    <span class="avatar bg-primary-transparent"> <i class="ri-battery-charge-fill"></i> </span> 
+                                </div>
+                                <div class="custom-border-end" > <span class="d-block fs-18 mb-1 fw-semibold">Grid Balance</span>
+                                    <h6 class="mb-0 fs-18">{{this.location_grid.balance_amt}}</h6> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-md-6" *ngIf="sourceComponent!== 'amr'">
+                    <div class="card" style="background: #00ffcf1c;" >
+                        <div class="top-left" ></div>
+                        <div class="bottom-left" ></div>
+                        <div class="bottom-right" ></div>
+                        <div class="top-right" ></div>
+                        <div class="card-body" >
+                            <div class="mb-3 d-flex align-items-start justify-content-start" >
+                                <div> 
+                                    <span class="avatar bg-primary-transparent"> <i class="ri-battery-charge-line"></i> </span> 
+                                </div>
+                                <div class="custom-border-end" > <span class="d-block fs-18 mb-1 fw-semibold">DG Balance</span>
+                                    <h6 class="mb-0 fs-18">{{this.location_dg.balance_amt}}</h6> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-md-6" *ngIf="sourceComponent== 'amr'"> 
+                    <div class="card" style="background: #00ffcf1c;" >
+                        <div class="top-left" ></div>
+                        <div class="bottom-left" ></div>
+                        <div class="bottom-right" ></div>
+                        <div class="top-right" ></div>
+                        <div class="card-body" >
+                            <div class="mb-3 d-flex align-items-start justify-content-start" >
+                                <div> 
+                                    <span class="avatar bg-primary-transparent"> <i class="ri-speed-up-fill"></i> </span> 
+                                </div>
+                                <div class="custom-border-end" > <span class="d-block fs-18 mb-1 fw-semibold">Meter No.</span>
+                                    <h6 class="mb-0 fs-18">{{this.location_grid.meter_id}}</h6> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="background: #00ffcf1c;" >                <div class="top-left" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="top-right" ></div>
+                <div class="card-header" >
+                    <div class="card-title" > Consumption {{this.activeConsumptionChart}} </div>
+                    <button type="button" class="btn btn-secondary " (click)="showConsumptionChart('daily')">Daily</button>
+                    <button type="button" class="btn btn-secondary " (click)="showConsumptionChart('monthly')">Monthly</button>
+                </div>
+                <div class="card-body" >
+                    <div id="consumptiondaily" style="min-height: 415px;" *ngIf="this.activeConsumptionChart === 'daily'" ></div>
+                    <div id="consumptionmontly" style="min-height: 415px;"  *ngIf="this.activeConsumptionChart === 'monthly'" >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-xl-6" >
+            <div class="card" style="background: #00ffcf1c;" >                
+                <div class="top-left" ></div>
+                <div class="bottom-left" ></div>
+                <div class="bottom-right" ></div>
+                <div class="top-right" ></div>
+                <div class="card-header pb-2 border-bottom justify-content-between" >
+                    <div class="card-title" > Consumer Details </div>
+                    </div>
+                <div class="card-body p-0" >
+                    <ul class="list-group border-0 crypto-list">
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Rate Category</p>
+                                <p class="text-light mb-0 font-weight-normal fs-15"> <span class="numberfont">{{this.currentLocationData.rate_category}}</span> </p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Recharge Id</p>
+                                <p class="text-danger mb-0 font-weight-normal fs-12"> <span class="numberfont">{{this.currentLocationData.last_coupon_no}}</span></p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-normal text-light colorchange">Recharge Time</p>
+                                <p class="text-light mb-0 fs-12"> <span class="numberfont">{{this.currentLocationData.last_recharge_time}}</span> </p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Rechage Amount</p>
+                                <p class="text-light mb-0 fs-12"> <span class="numberfont">{{this.currentLocationData.last_coupon_amount}}
+                                </span> </p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange"> Active Cut Off</p>
+                                <p class="text-success mb-0 fs-15"> <span class="numberfont" *ngIf="this.currentLocationData.active_cut_off=== 'Y'"><i class="las la-check"></i></span><span class="numberfont" *ngIf="this.currentLocationData.active_cut_off=== 'N'"><i class="las la-times"></i></span></p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Active Cut Off GRID</p>
+                                <p class="text-success mb-0 fs-15"> <span class="numberfont" *ngIf="this.currentLocationData.active_cut_off_grid=== 'Y'"><i class="las la-check"></i></span><span class="numberfont" *ngIf="this.currentLocationData.active_cut_off_grid=== 'N'"><i class="las la-times"></i></span></p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange"> Notification Email</p>
+                                <p class="text-success mb-0 fs-15"> <span class="numberfont" *ngIf="this.currentLocationData.notification_email=== 'Y'"><i class="las la-check"></i></span><span class="numberfont" *ngIf="this.currentLocationData.notification_email  === 'N'"><i class="las la-times"></i></span></p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Notification SMS </p>
+                                <p class="text-success mb-0 fs-15"> <span class="numberfont" *ngIf="this.currentLocationData.notification_sms=== 'Y'"><i class="las la-check"></i></span><span class="numberfont" *ngIf="this.currentLocationData.notification_sms    === 'N'"><i class="las la-times"></i></span></p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">MMC</p>
+                                <p class="text-danger mb-0 fs-12"> <span class="numberfont">{{this.currentLocationData.last_process_time_mmc}}</span> </p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Fixed</p>
+                                <p class="text-light mb-0 fs-12"> <span class="numberfont">{{this.currentLocationData.last_process_time_fixed}}</span> </p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-top-0 border-start-0 border-end-0 border-bottom bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange"> Other</p>
+                                <p class="text-success mb-0 fs-12"> <span class="numberfont">{{this.currentLocationData.last_process_time_other}}</span></p>
+                            </div>
+                        </li>
+                        <li class="list-group-item flex-column align-items-start border-0 bg-transparent">
+                            <div class="d-flex w-100 justify-content-between align-items-center" >
+                                <p class="fs-20 mb-0 font-weight-semibold text-light colorchange">Tower Name</p>
+                                <p class="text-info mb-0 fs-15"> <span class="numberfont">{{this.currentLocationData.tower_name}}</span> </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-xl-6" >
+            <div class="card" style="background: #00ffcf1c;" >
+                <div class="top-left"></div>
+                <div class="bottom-left"></div>
+                <div class="bottom-right"></div>
+                <div class="top-right"></div>
+                <div class="card-header justify-content-between" >
+                    <div class="card-title" > Load </div>
+
+                </div>
+                <div class="card-body pt-0" >
+                    <div id="Piechart" class="text-center" style="min-height: 465px;" >
+                    </div>
+                    <div class="d-flex align-items-center mb-3" >
+                        <div class="flex-fill d-flex align-items-center" >
+                            <div class="me-2" > <span class="avatar avatar-sm rounded-circle bg-primary-transparent"><i class="ri-battery-charge-fill"></i></span> </div> <span>Grid Load</span> </div>
+                        <div class="text-end" > <span class="badge bg-primary-transparent">{{this.location_grid.grid_load}} {{this.location_grid.grid_load_unit}}</span> </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3" >
+                        <div class="flex-fill d-flex align-items-center" >
+                            <div class="me-2" > <span class="avatar avatar-sm rounded-circle bg-secondary-transparent"><i class="ri-battery-charge-fill"></i></span> </div> <span>DG Load</span> </div>
+                        <div class="text-end" > <span class="badge bg-secondary-transparent">{{this.location_dg.dg_load}} {{this.location_dg.grid_load_unit}}</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End:: row-2 -->
+ 
