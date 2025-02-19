@@ -7,7 +7,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class DataserviceService {
 
-  private apiUrlPVVNL= 'https://uppclmp.myxenius.com/NOC_api/api/';
+  private apiUrlPVVNL= 'https://vapt.myxenius.com/NOC_api/api/';
   private apiUrlNPCL = 'https://multipoint.myxenius.com/NOC_api/api/';
   private apiUrlTorrent ='https://torrentpower.myxenius.com/NOC_api/api/';
   private apiUrlAMR ='https://vapt-mp.myxenius.com/NOC_api/api/';
@@ -48,6 +48,30 @@ export class DataserviceService {
     };
     
     return this.http.post<any>(`${url}load_survey`, body);
+  }
+
+  getMonthlyBill(location_id:string,year:string,month:string){
+    const sourceComponent = this.sourceComponent.getValue() || this.getStoredSourceComponent() || '';  // Ensure it's never null
+    const url = this.getUrlBasedOnSource(sourceComponent);
+    if (sourceComponent === 'pvvnl') {
+      this.project = 'PVVNL';
+    } else if (sourceComponent === 'npcl') {
+      this.project = 'NPCL';
+    }
+    else if (sourceComponent === 'torrent') {
+      this.project = 'torrent'
+    }
+    else if (sourceComponent === 'amr') {
+      this.project = 'AMR'
+    }
+    const body:any = {
+      location_id:location_id,
+      project:this.project,
+      date:`${year}-${month}`
+    }
+    return this.http.post<any>(`${url}reportData`,body)
+
+
   }
   getRecharge(location_id:string){
     const sourceComponent = this.sourceComponent.getValue() || this.getStoredSourceComponent() || '';  // Ensure it's never null

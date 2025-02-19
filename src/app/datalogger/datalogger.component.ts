@@ -14,6 +14,7 @@ import * as XLSX from "xlsx";
 import { ActivatedRoute, Router } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { SharedService } from "../shared.service";
+import { PdfmakeService } from "../pdfmake.service";
 declare var $: any; // Declare jQuery for Select2
 
 @Component({
@@ -113,7 +114,8 @@ export class DataloggerComponent implements AfterViewInit {
   constructor(
     private apiDatalogger: DataloggerService,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private route: ActivatedRoute,private router: Router,private sharedService: SharedService
+    private route: ActivatedRoute,private router: Router,private sharedService: SharedService,
+    private pdfService : PdfmakeService
     
   ) {}
   siteid:any
@@ -457,7 +459,9 @@ fetchDataAndType(type: string,siteId: string = ''): void {
   selectedSiteData:any[]=[]
   noData:boolean = true
   showModal:boolean = false
-
+  generatepdf():void{
+     this.pdfService.generatePDF(this.typedata,"DataLogger Report Data",["site_id","gateway_id"],9 ,8)
+  }
 
   // onSiteIdClick(params: any) {
   //   const type = this.currentType || 'Total';

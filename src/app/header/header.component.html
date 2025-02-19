@@ -73,7 +73,7 @@
               <option value="/main/npcl">NPCL</option>
               <option value="/main/pvvnl">PVVNL</option>
               <option value="/main/torrent">Torrent</option>
-              <option value="/main/amr">AMR</option>
+              <!-- <option value="/main/amr">AMR</option> -->
 
           </select>
 
@@ -83,7 +83,7 @@
               <option value="npcl">NPCL</option>
               <option value="pvvnl">PVVNL</option>
               <option value="torrent">Torrent</option>
-              <option value="amr">AMR</option>
+              <!-- <option value="amr">AMR</option> -->
 
           </select>
 
@@ -92,7 +92,7 @@
               <option value="npcl">NPCL</option>
               <option value="pvvnl">PVVNL</option>
               <option value="torrent">Torrent</option>
-              <option value="amr">AMR</option>
+              <!-- <option value="amr">AMR</option> -->
 
           </select>
 
@@ -157,9 +157,9 @@
                       <li class="nav-item" [ngClass]="{'active-route': selectedRoute === '/main/torrent'}" (click)="updateRoute('/main/torrent')">
                           <a class="nav-link" [routerLink]="['/main/torrent']">Torrent</a>
                       </li>
-                      <li class="nav-item" [ngClass]="{'active-route': selectedRoute === '/main/amr'}" (click)="updateRoute('/main/amr')">
+                      <!-- <li class="nav-item" [ngClass]="{'active-route': selectedRoute === '/main/amr'}" (click)="updateRoute('/main/amr')">
                           <a class="nav-link" [routerLink]="['/main/amr']">AMR</a>
-                      </li>
+                      </li> -->
                   </ul>
 
 
@@ -185,11 +185,11 @@
                   Torrent
                 </a>
                       </li>
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
                           <a class="nav-link" href="javascript:void(0)" (click)="onProjectChangeNavlink('amr')" [ngClass]="{ 'active-project': activeProject === 'amr' }">
                   AMR
                 </a>
-                      </li>
+                      </li> -->
                   </ul>
 
                   <div class="SearchDIV">
@@ -212,7 +212,7 @@
                           <option value="npcl">NPCL</option>
                           <option value="pvvnl">PVVNL</option>
                           <option value="torrent">Torrent</option>
-                          <option value="amr">AMR</option>
+                          <!-- <option value="amr">AMR</option> -->
 
                       </select>
                       <button *ngIf="isSmallScreen && (showElements || SearchInput)" class="btn btn-primary rounded-pill btn-wave" (click)="Navbarsearch()">Submit</button>

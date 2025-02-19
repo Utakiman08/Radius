@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SiteService {
-  private apiUrl2= 'https://uppclmp.myxenius.com/NOC_api/api/';
+  private apiUrl2= 'https://vapt.myxenius.com/NOC_api/api/';
   private apiUrlNPCL = 'https://multipoint.myxenius.com/NOC_api/api/';
   private apiUrlTorrent ='https://torrentpower.myxenius.com/NOC_api/api/';
   private apiUrlAMR ='https://vapt-mp.myxenius.com/NOC_api/api/';
@@ -51,6 +51,8 @@ export class SiteService {
     };
     return this.http.post<any>(`${url}list_data`, payload);
   }
+
+  
 private getUrlBasedOnSource(sourceComponent: string): string {
     switch (sourceComponent) {
       case 'control':

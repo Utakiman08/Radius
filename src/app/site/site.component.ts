@@ -9,10 +9,10 @@ import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
 import { SharedService } from '../shared.service';
+import { PdfmakeService } from '../pdfmake.service';
 
 
 interface RowData {
-  id: string;
   short_code: string;
   application: string;
   name: string;
@@ -101,7 +101,7 @@ loading:boolean=false
       }
     }
 
-  constructor(private apiService: SiteService, @Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute,private router : Router,private sharedService: SharedService) {}
+  constructor(private apiService: SiteService, @Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute,private router : Router,private sharedService: SharedService,private pdfService: PdfmakeService) {}
 
   ngOnInit(): void {
     // Get initial value from URL query params
@@ -346,6 +346,11 @@ onFilterTextBoxChangedmodal() {
         this.exportToExcel('Site_Data-Site.xlsx');
       }
     }
+  }
+
+  exportToPdf():void {
+
+    this.pdfService.generatePDF(this.typedata,"Site Detail Data",["id","application","communication","project_id"]);
   }
 
 

@@ -550,8 +550,10 @@ export class DailyComponent implements OnInit,OnDestroy {
         let initialData = this.values[this.values.length - 1];
         this.values = [initialData];
         if (initialData === 0 && this.ZERORERUN === false) {
-          this.ZERORERUN = true;
-          this.loadData(true)
+          setTimeout(() => {
+            this.ZERORERUN = true;
+            this.loadData(true)
+          }, 5000);
          } 
         this.categories = [
           `${adjustedHour}:${adjustedMinute.toString().padStart(2, '0')}:${adjustedSecond.toString().padStart(2, '0')}`

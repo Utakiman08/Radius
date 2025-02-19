@@ -131,7 +131,6 @@ export class CdailyComponent implements OnInit,OnDestroy{
       if (initialLoad) {
         this.secondsSettings = 1
         this.loading = true;
-        this.ZERORERUN = false;
         this.originalValues = [];
         this.originalValues2 = [];
         this.originalCategories = [];
@@ -243,12 +242,14 @@ export class CdailyComponent implements OnInit,OnDestroy{
       const millisecondsToNextHour = nextHour.getTime() - now.getTime();
   
       this.hourlytimeout =   setTimeout(() => {
+        this.ZERORERUN = false
         this.loadData(true); // Update data at the start of the next hour
         this.setHourlyInterval(); // Set an interval to update data every hour after the first update
       }, millisecondsToNextHour);
     }
   
     private setHourlyInterval() {
+      this.ZERORERUN = false
       this.hourlyinterval = setInterval(() => {
         this.loadData(true);
       }, 3600000); // 3600000 ms = 1 hour
@@ -583,8 +584,10 @@ export class CdailyComponent implements OnInit,OnDestroy{
         let initialData = this.values[this.values.length - 1];
         this.values = [initialData];
         if (initialData === 0 && this.ZERORERUN === false) {
-          this.loadData(true)
-         } 
+          setTimeout(() => {
+            this.ZERORERUN = true;
+            this.loadData(true)
+          }, 5000);         } 
         this.categories = [
           `${adjustedHour}:${adjustedMinute.toString().padStart(2, '0')}:${adjustedSecond.toString().padStart(2, '0')}`
         ];

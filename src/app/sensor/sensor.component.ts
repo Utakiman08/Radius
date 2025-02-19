@@ -9,6 +9,7 @@ import * as XLSX from 'xlsx';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { SharedService } from '../shared.service';
+import { PdfmakeService } from '../pdfmake.service';
 declare var $: any; // Declare jQuery for Select2
 
 @Component({
@@ -20,8 +21,7 @@ declare var $: any; // Declare jQuery for Select2
 })
 export class SensorComponent implements OnInit,AfterViewInit,OnDestroy {
   private gridApi: any;
-  // private modalGridApi : any;
-  // private modalGridApi: any; 
+    // private modalGridApi: any; 
  offset:number = 0
   @ViewChild('agGrid', { static: false }) agGrid!: AgGridAngular;
   @ViewChild('modalAgGrid', { static: false }) modalAgGrid!: AgGridAngular;
@@ -118,7 +118,7 @@ export class SensorComponent implements OnInit,AfterViewInit,OnDestroy {
   
   currentType: string = 'Total';
 
-  constructor(private apiSensor: SensorService,@Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute,private cdr:ChangeDetectorRef,private router: Router, private sharedService: SharedService) {}
+  constructor(private apiSensor: SensorService,@Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute,private cdr:ChangeDetectorRef,private router: Router, private sharedService: SharedService,private pdfService : PdfmakeService) {}
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }
@@ -789,7 +789,9 @@ export class SensorComponent implements OnInit,AfterViewInit,OnDestroy {
       XLSX.writeFile(wb, fileName);
     }
   }
-
+  generatepdf():void{
+    this.pdfService.generatePDF(this.typedata,"Sensor Report Data",[])
+  }
   // onExportModal(format: string): void {
   //   if (this.modalGridApi ) {
   //     if (format === 'csv') {

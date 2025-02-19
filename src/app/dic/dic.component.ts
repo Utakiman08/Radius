@@ -8,6 +8,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../shared.service';
+import { PdfmakeService } from '../pdfmake.service';
 declare var $: any; // Declare jQuery for Select2
 
 @Component({
@@ -138,7 +139,9 @@ export class DicComponent implements OnInit,AfterViewInit {
       this.gridApi.sizeColumnsToFit();
     }
   }
-  constructor(private apiDIC: DicService,@Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute,private router: Router,private sharedService: SharedService) { }
+  constructor(private apiDIC: DicService,@Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute,private router: Router,private sharedService: SharedService,private pdfService:PdfmakeService) { }
+
+
 
 
   loading:boolean  = false
@@ -565,6 +568,10 @@ siteid:any
 
       XLSX.writeFile(wb, fileName);
     }
+  }
+
+  generatepdf():void{
+    this.pdfService.generatePDF(this.typedata,"DIC Report Data",["communication","site_id","gateway_id","remark"])
   }
 
   // onExportModal(format: string): void {

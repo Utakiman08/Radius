@@ -10,6 +10,41 @@
             width: 100% !important;
         }
     }
+    .dropdown-menu{
+      border-color: var(--default-border);
+      box-shadow: 0px 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+      font-size: 0.875rem;
+      color: rgb(255, 255, 255);
+      background-color: var(--theme-bg-gradient);
+      padding: 0;
+      border-radius: 0;
+      overflow: hidden;
+      animation-duration: 0.2s;
+      -webkit-animation-duration: 0.2s;
+      animation-fill-mode: both;
+      -webkit-animation-fill-mode: both;
+      animation-name: slideIn;
+      z-index: 10;
+      width: auto;
+    }
+    .form{
+      display:flex;
+      margin: 5px;
+      position: relative;
+      align-items: center;
+    }
+    #month,#year{
+      width: 70px;
+      border: none;
+      border-bottom: 2px solid rgba(2, 188, 182, 0.6980392157);
+      outline: none;
+      padding: 8px;
+      background-color: transparent;
+    }
+    .intervalTimersubmit{
+      margin-left: 10px;
+    
+    }
     .row{
         --bs-gutter-x : 0.5rem !important;
     }

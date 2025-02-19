@@ -2,19 +2,26 @@ import {  ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@ang
 import * as Highcharts from 'highcharts';
 import { DataserviceService } from '../dataservice.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { PdfmakeService } from '../../pdfmake.service';
 
 @Component({
   selector: 'app-consumer-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './consumer-detail.component.html',
   styleUrl: './consumer-detail.component.scss'
 })
 export class ConsumerDetailComponent implements OnInit{
 
-
+  Month:string = ''
+  Year:string = ''
 sourceComponent:any
-
+getBill(){
+  this.dataService.getMonthlyBill(this.locationid,this.Year,this.Month.toString().padStart(2,"0")).subscribe(data=>{
+      this.pdfService.formatDocument(data)
+  })
+}
   sanitizeSiteData(data: any): any {
     const sanitizedData: any = {};
     for (const key in data) {
@@ -116,7 +123,8 @@ sourceComponent:any
 
   constructor(private dataService : DataserviceService,
     private cdr: ChangeDetectorRef,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private pdfService :PdfmakeService
 
   ){}
   gridDates :  any[] =[];

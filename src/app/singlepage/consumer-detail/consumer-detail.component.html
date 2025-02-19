@@ -1,7 +1,7 @@
     <!-- Start:: row-1 -->
     <div class="row" >
         <div class="col-xl-12" >
-            <div class="card" style="background: #00ffcf1c;" >                
+            <div class="card" style="background: #00ffcf1c;overflow: visible;" >                
                 <div class="top-left" ></div>
                 <div class="bottom-left" ></div>
                 <div class="bottom-right" ></div>
@@ -33,12 +33,26 @@
                                 <h6 class=" mb-0">{{this.location_grid.meter_id}}</h6> 
                             </div>
                         </div>
+
+
                         <div class="col-xl-2 col-sm-6" *ngIf="sourceComponent!== 'amr'" >
-                            <div class="btn-list text-xl-end p-3 pb-4">
+                            <button type="button" class="btn right btn-info dropdown-toggle dropdown-toggle-split me-2" data-bs-toggle="dropdown" aria-expanded="false">Monthly Bill </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form (ngSubmit)="getBill()">
+                                        <label for="MonthlyBill" style="margin-left: 5px;">Set Timer For Update:</label>
+                                        <div class="form">
+                                            <input id="month" type="number" [(ngModel)]="Month" name="month" placeholder="Month" min="1" max = "12" required />
+                                            <span>:</span>
+                                            <input id="year" type="number" [(ngModel)]="Year" name="year" placeholder="Year" min="0" required />
+                                            <button class="intervalTimersubmit btn btn-primary rounded-pill btn-wave" type="submit">Download PDF</button>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
                                 <button class="btn btn-primary" (click)="toggleData()">
-                                    Switch to {{ isGridActive ? 'DG' : 'Grid' }} Data
-                                  </button>
-                            </div>
+                                    {{ isGridActive ? 'DG' : 'Grid' }} Data
+                                </button>
                         </div>
                     </div>
                 </div>

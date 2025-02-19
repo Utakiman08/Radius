@@ -344,6 +344,8 @@
                                 <input type="text" id="filter-text-box" placeholder="Search..." (input)="onFilterTextBoxChanged()" />
                                 <button class="btn btn-primary-light rounded-pill btn-wave link" (click)="onExport('csv')">Download CSV</button>
                                 <button class="btn btn-outline-success rounded-pill btn-wave" (click)="onExport('xlsx')">Download Excel</button>
+                                <button class="btn btn-outline-danger rounded-pill btn-wave" (click)="generatepdf()">Download PDF</button>
+
                             </div>
                         </div>
                         <div class="card-body tables">

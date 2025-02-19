@@ -262,10 +262,11 @@
                         <div class="card-header" style="overflow: auto;">
                       <div class="card-title">Site {{this.currentDisplayType}}</div>
                       <div class="btnholder1" style="min-width: 470px;">
-                         <span class = "newtabheaders">Search:</span>
+                        <span class = "newtabheaders">Search:</span>
                         <input type="text" id="filter-text-box" placeholder="Search..." (input)="onFilterTextBoxChanged()" />
                         <button class="btn btn-primary-light rounded-pill btn-wave link" (click)="onExport('csv')">Download CSV</button>
                         <button class="btn btn-outline-success rounded-pill btn-wave" (click)="onExport('xlsx')">Download Excel</button>
+                        <button class="btn btn-outline-danger rounded-pill btn-wave" (click)="exportToPdf()">Download PDF</button>
                       </div>
                     </div>
                     <div class="card-body tables">
