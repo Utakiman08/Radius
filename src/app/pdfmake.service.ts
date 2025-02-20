@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { BehaviorSubject } from 'rxjs';
 
 // Assign fonts to pdfMake
 (pdfMake as any).vfs = (pdfFonts as any).vfs;
@@ -12,62 +13,79 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 })
 export class PdfmakeService {
   constructor() {}
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  isLoading$ = this.loadingSubject.asObservable(); // Expose an observable
 
 
+  generatePDF(
+    data: any[], 
+    reportname: string, 
+    excludedkey: string[] = [], 
+    tableheader: number = 10, 
+    column: number = 10
+  ): void {
+    this.loadingSubject.next(true); // Start loading
   
-  generatePDF(data: any, reportname: string,excludedkey:string[] = [],tableheader:number=10,column:number =10): void {
-    const excludedKeys = excludedkey;
-
-    console.log(data);
-    const headers = Object.keys(data[0]).filter(key => !excludedKeys.includes(key));
-    const columnWidths = headers.length > 8 ? Array(headers.length).fill('auto') : Array(headers.length).fill('*');
-    const docDefinition: any = {
-      pageOrientation: 'landscape',
-      pageMargins: [20, 20, 20, 20],
+    setTimeout(() => {
+      const excludedKeys = excludedkey;
+      const headers = Object.keys(data[0]).filter(key => !excludedKeys.includes(key));
+      const columnWidths = headers.length > 8 ? Array(headers.length).fill('auto') : Array(headers.length).fill('*');
+      
+      const rowsPerPage = 10; // Adjust this number based on testing
+      let pages: any[] = [];
+      
+      for (let i = 0; i < data.length; i += rowsPerPage) {
+        const pageData = data.slice(i, i + rowsPerPage); // Get data for current page
   
-      content: [
-        { text: reportname, style: 'header', alignment: 'center' },
-        { text: '\n' },
-        {
+        pages.push({
           table: {
             headerRows: 1,
-            
-            widths: headers.map(() => columnWidths), // Make all columns take equal space
+            widths: headers.map(() => columnWidths),
             body: [
-              // Dynamically generate headers
-              
-              headers.map(header => ({ text: this.formatHeader(header), style: 'tableHeader',margin:[5,0,5,0] })),
-  
-              // Dynamically generate table rows
-              ...data.map((item: any) => headers.map(header => ({text: item[header] , style: 'Columns',margin:[5,0,5,0]}) ))
+              headers.map(header => ({ text: this.formatHeader(header), style: 'tableHeader', margin: [5, 0, 5, 0] })),
+              ...pageData.map((item: any) => headers.map(header => ({ text: item[header], style: 'Columns', margin: [5, 0, 5, 0] })))
             ]
           },
-          layout: ''
-        },
-        // { text: `\nTotal Records: ${data.length}`, style: 'subheader' }
-      ],
-  
-      footer: function (currentPage: number, pageCount: number) {
-        return {
-          columns: [
-            { text: `Page ${currentPage} of ${pageCount}`, style: 'small' },
-            { text: `Generated on: ${new Date().toLocaleString()}`, alignment: 'right', style: 'small' }
-          ],
-          margin: [20, 0, 20, 0]
-        };
-      },
-  
-      styles: {
-        header: { fontSize: 25, bold: true },
-        Columns: {fontSize:column,alignment:'left'},
-        subheader: { fontSize:8 }, // Padding for subheader
-        small: { fontSize: 6 },
-        tableHeader: { fontSize:tableheader, bold: true, fillColor: '#DDEEFF' }
+          layout: '',
+          margin: [0, 10, 0, 10],
+          pageBreak: i === 0 ? undefined : 'before' 
+        });
       }
-    };
   
-    pdfMake.createPdf(docDefinition).open();
+      const docDefinition: any = {
+        pageOrientation: 'landscape',
+        pageMargins: [20, 20, 20, 20],
+        content: [
+          { text: reportname, style: 'header', alignment: 'center' },
+          { text: '\n' },
+          ...pages
+        ],
+        footer: function (currentPage: number, pageCount: number) {
+          return {
+            columns: [
+              { text: `Page ${currentPage} of ${pageCount}`, style: 'small' },
+              { text: `Generated on: ${new Date().toLocaleString()}`, alignment: 'right', style: 'small' }
+            ],
+            margin: [20, 0, 20, 0]
+          };
+        },
+        styles: {
+          header: { fontSize: 25, bold: true },
+          Columns: { fontSize: column, alignment: 'left' },
+          subheader: { fontSize: 8 },
+          small: { fontSize: 6 },
+          tableHeader: { fontSize: tableheader, bold: true, fillColor: '#DDEEFF' }
+        }
+      };
+  
+      pdfMake.createPdf(docDefinition).getBlob((blob) => {
+        this.loadingSubject.next(false); // Stop loading
+        const url = URL.createObjectURL(blob);
+        window.open(url); // Open PDF
+      });
+    }, 0); // Small delay to prevent UI freezing
   }
+  
   
 
   formatHeader(header: String): String {

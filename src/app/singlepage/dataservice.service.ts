@@ -7,7 +7,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class DataserviceService {
 
-  private apiUrlPVVNL= 'https://vapt.myxenius.com/NOC_api/api/';
+  private apiUrlPVVNL= 'https://uppclmp.myxenius.com/NOC_api/api/';
   private apiUrlNPCL = 'https://multipoint.myxenius.com/NOC_api/api/';
   private apiUrlTorrent ='https://torrentpower.myxenius.com/NOC_api/api/';
   private apiUrlAMR ='https://vapt-mp.myxenius.com/NOC_api/api/';

@@ -8,7 +8,7 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class MeterService {
-  private apiUrl2= 'https://vapt.myxenius.com/NOC_api/api/';
+  private apiUrl2= 'https://uppclmp.myxenius.com/NOC_api/api/';
   private apiUrlNPCL = 'https://multipoint.myxenius.com/NOC_api/api/';
   private apiUrlTorrent = 'https://torrentpower.myxenius.com/NOC_api/api/';
   private apiUrlAMR = 'https://vapt-mp.myxenius.com/NOC_api/api/';

@@ -7,7 +7,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import {  createGrid,  GridOptions, GridReadyEvent } from 'ag-grid-community';
 import * as XLSX from 'xlsx';
 import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { SharedService } from '../shared.service';
 import { PdfmakeService } from '../pdfmake.service';
 declare var $: any; // Declare jQuery for Select2
@@ -120,7 +120,9 @@ export class SensorComponent implements OnInit,AfterViewInit,OnDestroy {
 
   constructor(private apiSensor: SensorService,@Inject(PLATFORM_ID) private platformId: Object,private route: ActivatedRoute,private cdr:ChangeDetectorRef,private router: Router, private sharedService: SharedService,private pdfService : PdfmakeService) {}
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    if (this.pdfloaderSubscriber) {
+      this.pdfloaderSubscriber.unsubscribe();
+    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -168,8 +170,12 @@ export class SensorComponent implements OnInit,AfterViewInit,OnDestroy {
       this.getselectedSiteIdData(currentTypeToUse,this.selectedSiteId,50000);
     }  
   }
-
+  pdfloaderSubscriber !:Subscription
   ngOnInit(): void {
+
+  this.pdfloaderSubscriber = this.pdfService.isLoading$.subscribe((loading) => {
+      this.loading = loading;
+    });
      this.route.queryParams.subscribe((params) => {
       if (!this.sourceComponent) {
         this.Sitename = params['SiteName']
@@ -207,7 +213,7 @@ export class SensorComponent implements OnInit,AfterViewInit,OnDestroy {
       if (this.sourceComponent === 'control') {
         this.fetchDatatotal(); // Load total data
         this.fetchDataByTypetotal('Total');
-      } 
+      }
       else if(this.sourceComponent === 'pvvnl'|| 'npcl' || 'torrent'||'amr') {
         if (this.siteid && this.Sitename) {
           console.log('siteidcrunnig')
@@ -464,7 +470,7 @@ export class SensorComponent implements OnInit,AfterViewInit,OnDestroy {
         }
   
         // Update grid data
-        if (this.gridApi) { 
+        if (this.gridApi) {
           this.gridApi.setGridOption('rowData', this.selectedSiteData);
           this.gridApi.refreshCells({ force: true });
         }
@@ -790,7 +796,7 @@ export class SensorComponent implements OnInit,AfterViewInit,OnDestroy {
     }
   }
   generatepdf():void{
-    this.pdfService.generatePDF(this.typedata,"Sensor Report Data",[])
+    this.pdfService.generatePDF(this.typedata,"Sensor Report Data",["remark","site_id","dg_on"],10,8)
   }
   // onExportModal(format: string): void {
   //   if (this.modalGridApi ) {

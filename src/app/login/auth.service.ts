@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = 'https://vapt.myxenius.com/NOC_api/api/login/'; // Replace with your actual API endpoint
+  private loginUrl = 'https://uppclmp.myxenius.com/NOC_api/api/login/'; // Replace with your actual API endpoint
   private loginId: string ='';
   private password: string ='';
   private project: string ='';

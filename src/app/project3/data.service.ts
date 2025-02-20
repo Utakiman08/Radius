@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl1 = 'https://vapt.myxenius.com/NOC_api/api/'
+  private apiUrl1 = 'https://uppclmp.myxenius.com/NOC_api/api/'
   private project = 'PVVNL'
   constructor(private http: HttpClient) {}
   getAllsite(SiteId:string): Observable<any> {
